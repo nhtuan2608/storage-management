@@ -3,18 +3,25 @@ package spring.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-//@Configuration
-//@ComponentScan("org.o7planning.hellospringmvc.*")
-//public class ApplicationConTextConfig {
-//
-//	@Bean(name = "viewResolver")
-//	public InternalResourceViewResolver getViewResolver() {
-//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//		viewResolver.setPrefix("/WEB-INF/pages/");
-//		viewResolver.setSuffix(".jsp");
-//		return viewResolver;
-//	}
-//
-//}
+
+public class ApplicationConTextConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
+	   @Override
+	   protected Class<?>[] getRootConfigClasses() {
+	      return new Class[] { HibernateConfig.class };
+	   }
+	 
+	   @Override
+	   protected Class<?>[] getServletConfigClasses() {
+	      return new Class[] { WebMVCConfig.class };
+	   }
+	 
+	   @Override
+	   protected String[] getServletMappings() {
+	      return new String[] { "/" };
+	   }
+	}
+
+

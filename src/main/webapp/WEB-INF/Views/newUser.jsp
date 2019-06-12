@@ -8,15 +8,19 @@
 </head>
 <body>
 <h2>Create new User</h2>
-<form name="userForm" action="saveUser" method="POST">
+<form name="userForm" action="saveUser" method="POST" modelAttribute="user">
 <table>
 	<tr>
 		<td>User #: </td>
-		<td><input type="text" name="userNo"/></td>
+		<td><input type="text" name="id"/></td>
 	</tr>
 	<tr>
 		<td>User Name: </td>
 		<td><input type="text" name="userName"/></td>
+	</tr>
+	<tr>
+		<td>Password: </td>
+		<td><input type="text" name="password"/></td>
 	</tr>
 	<tr>
 		<td>User's role: </td>
