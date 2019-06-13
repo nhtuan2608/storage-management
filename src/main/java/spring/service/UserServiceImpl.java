@@ -21,8 +21,14 @@ public class UserServiceImpl implements UserService{
 	   }
 	 
 	   @Transactional(readOnly = true)
-	   public List<User> list() {
-	      return userDao.list();
+	   public List<User> findAll() {
+	      return userDao.findAll();
 	   }
+
+	@Override
+	public void update(User user) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

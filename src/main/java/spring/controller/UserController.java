@@ -2,7 +2,6 @@ package spring.controller;
 
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.model.User;
 import spring.service.UserService;
@@ -31,17 +27,29 @@ public class UserController {
 		return "index";
 	}
 	
-	
 	@GetMapping("/new")
 	public String newUser() {
 		return "newUser";
 	}
 	
-	@RequestMapping("/showUser")
+	@GetMapping("/showUser")
 	public String showUser(Locale locale,Model model) {
 		model.addAttribute("users", userService.list());
 		return "showUser";
 	}
+	
+	@PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("User") @Valid User user,
+                            BindingResult result, Model model) {
+ 
+        if (result.hasErrors()) {
+            model.addAttribute("users", userService.list());
+            return "newUser";
+        }
+ 
+        userService.save(user);
+        return "redirect:showUser";
+    }
 	
 //	@PostMapping("/saveUser")
 //	public String saveUser(Model model,HttpServletRequest rq, 
@@ -65,16 +73,5 @@ public class UserController {
 //		return "showUser";
 //	}
 	
-	@PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("User") @Valid User user,
-                            BindingResult result, Model model) {
- 
-        if (result.hasErrors()) {
-            model.addAttribute("users", userService.list());
-            return "newUser";
-        }
- 
-        userService.save(user);
-        return "redirect:showUser";
-    }
+
 }

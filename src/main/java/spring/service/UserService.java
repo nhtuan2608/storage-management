@@ -6,5 +6,7 @@ import spring.model.User;
 
 public interface UserService {
 	void save(User user);
-    List<User> list(); 
+    List<User> findAll(); 
+    void update(User user);
+    
 }
