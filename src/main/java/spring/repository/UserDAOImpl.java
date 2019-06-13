@@ -1,6 +1,7 @@
 package spring.repository;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.TypedQuery;
 
@@ -8,12 +9,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import spring.DAO.UserDao;
 import spring.model.User;
 
 @Repository
-public class UserDAOImpl implements UserDao {
+@Transactional(rollbackFor = Exception.class)
+public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -21,8 +23,10 @@ public class UserDAOImpl implements UserDao {
 	@Override
 	public void save(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(user);
-		session.close();
+		Logger logger = Logger.getLogger(this.getClass().getName());
+		String msg = "User: " + user;
+		logger.info(msg);
+		session.saveOrUpdate(user);
 	}
 
 	@Override
@@ -32,20 +36,21 @@ public class UserDAOImpl implements UserDao {
 //		return query.getResultList();
 //		
 		Session session = sessionFactory.getCurrentSession();
-	    return session.createQuery("FROM Customer", User.class).getResultList();
+	    return session.createQuery("FROM User", User.class).getResultList();
 	}
 
 	@Override
-	public User findById(int id) {
+	public User findById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 	    return session.get(User.class, id);
 	}
 
 	@Override
-	public void delete(User user) {
+	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
-	    session.remove(user);
-	    session.close();
+		User usr = findById(id);
+		System.out.println(usr);
+	    session.remove(usr);
 	}
 
 	@Override
@@ -54,4 +59,15 @@ public class UserDAOImpl implements UserDao {
 	    session.update(user);
 	}
 
+	@Override
+	public boolean existUser(String id) {
+		Session session = sessionFactory.getCurrentSession();
+		User usr = session.get(User.class, id);
+		if(usr != null)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 }

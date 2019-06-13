@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.model.User;
 import spring.service.UserService;
@@ -33,23 +35,36 @@ public class UserController {
 	}
 	
 	@GetMapping("/showUser")
-	public String showUser(Locale locale,Model model) {
-		model.addAttribute("users", userService.list());
+	public String showUser(Model model) {
+		model.addAttribute("listUsers", userService.findAll());
 		return "showUser";
 	}
 	
-	@PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("User") @Valid User user,
+	@RequestMapping("/editUser/{id}")
+	public String editUser(@PathVariable String id, Model model) {
+		User user = userService.findById(id);
+		model.addAttribute("user",user);
+		return "editUser";
+	}
+	
+	@RequestMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") @Valid User user,
                             BindingResult result, Model model) {
- 
         if (result.hasErrors()) {
-            model.addAttribute("users", userService.list());
+            model.addAttribute("listUsers", userService.findAll());
             return "newUser";
         }
- 
         userService.save(user);
+        //model.addAttribute("listUsers", userService.findAll());
         return "redirect:showUser";
     }
+	
+	@RequestMapping("/deleteUser/{id}")
+	public String deleteUser(@PathVariable String id, Model model) {
+		userService.delete(id);
+		model.addAttribute("listUsers", userService.findAll());
+		return "showUser";
+	}
 	
 //	@PostMapping("/saveUser")
 //	public String saveUser(Model model,HttpServletRequest rq, 

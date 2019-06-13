@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import spring.DAO.UserDao;
 import spring.model.User;
+import spring.repository.UserDAO;
 
 @Service
 public class UserServiceImpl implements UserService{
 
 	   @Autowired
-	   private UserDao userDao;
+	   private UserDAO userDao;
 	 
 	   @Transactional
 	   public void save(User user) {
@@ -27,8 +27,22 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
-		
+		userDao.update(user);
+	}
+
+	@Override
+	public User findById(String id) {
+		return userDao.findById(id);
+	}
+
+	@Override
+	public void delete(String id) {
+		userDao.delete(id);	
+	}
+
+	@Override
+	public boolean existUser(String id) {
+		return userDao.existUser(id);
 	}
 
 }

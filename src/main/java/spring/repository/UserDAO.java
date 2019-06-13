@@ -1,10 +1,10 @@
-package spring.service;
+package spring.repository;
 
 import java.util.List;
 
 import spring.model.User;
 
-public interface UserService {
+public interface UserDAO {
 	void save(User user);
 	List<User> findAll();
 	User findById(String id);

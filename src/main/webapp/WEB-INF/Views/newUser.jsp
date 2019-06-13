@@ -24,7 +24,7 @@
 	</tr>
 	<tr>
 		<td>User's role: </td>
-		<td><input type="text" name="userRole"/></td>
+		<td><input type="text" name="role"/></td>
 	</tr>
 	<tr>
 		<td colspan="1" align="center">
