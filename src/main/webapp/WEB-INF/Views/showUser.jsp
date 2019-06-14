@@ -7,6 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>INFO</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+td {
+  padding-right: 30px;
+}
+</style>
 </head>
 <body>
 <% Logger logger = Logger.getLogger(this.getClass().getName());%>
@@ -16,16 +24,31 @@
 <p><b>User's role:</b> ${param.userRole}</p>
 -->
 
-<c:forEach items="${users}" var="user">
+<c:url value="/deleteUser/" var="urlDelete"/>
+<c:url value="/editUser" var="urlUpdate"/>
+
 <table>
-    <tr>      
-        <td>${user.id}</td>
+    <tr>
+      <td>No.</td>
+		<td>Username</td>
+		<td>Password</td>
+		<td>Role</td>
+      <td colspan="3">View</td>
+    </tr>
+    <c:if test="${not empty listUsers}">
+      <c:forEach var="user" items="${listUsers}">
+        <tr style="border: 1px black solid">
+          <td>${user.id}</td>
         <td>${user.userName}</td>
         <td>${user.password}</td>
-        <td>${user.role}</td> 
-    </tr>
-    </table>
-</c:forEach>
+        <td>${user.role}</td>
+          <td> <a href="${urlView}/${user.id}">View</a></td>
+          <td> <a href="${urlUpdate}/${user.id}">Edit</a></td>
+          <td> <a href="${urlDelete}/${user.id}">Delete</a></td>
+        </tr>
+      </c:forEach>
+    </c:if>
+  </table>
 
 <!--  <p><b>User #:</b> ${users[1].id}</p>
 <p><b>Username:</b> ${users[1].userName}</p>
@@ -33,7 +56,7 @@
 <p><b>User's role:</b> ${user[1].userRole}</p>
 -->
 <% String message = "Users = "
-        + pageContext.findAttribute("users");
+        + pageContext.findAttribute("listUsers");
         logger.info(message); 
 %>
 

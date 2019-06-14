@@ -6,23 +6,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import spring.DAO.UserDao;
 import spring.model.User;
+import spring.repository.GenericDAO;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements GenericService<User>{
 
 	   @Autowired
-	   private UserDao userDao;
+	   private GenericDAO<User> userDAO;
 	 
+	   @Override
 	   @Transactional
 	   public void save(User user) {
-	      userDao.save(user);
+		   userDAO.save(user);
 	   }
 	 
+	   @Override
 	   @Transactional(readOnly = true)
-	   public List<User> list() {
-	      return userDao.list();
+	   public List<User> findAll() {
+	      return userDAO.findAll();
 	   }
 
+	@Override   
+	@Transactional
+	public void update(User user) {
+		userDAO.update(user);
+	}
+
+	@Override
+	@Transactional
+	public User findById(String id) {
+		return userDAO.findById(id);
+	}
+
+	@Override
+	@Transactional
+	public void delete(String id) {
+		userDAO.delete(id);	
+	}
+
+	@Override
+	@Transactional
+	public boolean isExist(String id) {
+		return userDAO.isExist(id);
+	}
 }
