@@ -2,30 +2,20 @@ package spring.repository;
 
 import java.util.List;
 import java.util.logging.Logger;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import spring.model.Material;
+import spring.model.Material_Type;
 
-/**
-* MaterialDAOImpl
-* 
-* 
-*
-* @author  Tuan Nguyen
-* @version 1.0
-* @since   2019-06-14 
-*/
 @Repository
-public class MaterialDAOImpl implements GenericDAO<Material>{
+public class Material_TypeDAOImpl implements  GenericDAO<Material_Type>{
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public void save(Material entity) {
+	public void save(Material_Type entity) {
 		Session session = sessionFactory.getCurrentSession();
 		Logger logger = Logger.getLogger(this.getClass().getName());
 		String msg = "Update Material: " + entity;
@@ -34,39 +24,39 @@ public class MaterialDAOImpl implements GenericDAO<Material>{
 	}
 
 	@Override
-	public List<Material> findAll() {
+	public List<Material_Type> findAll() {
 		Session session = sessionFactory.getCurrentSession();
-	    return session.createQuery("FROM Material", Material.class).getResultList();
+		return session.createQuery("FROM Material_Type", Material_Type.class).getResultList();
 	}
 
 	@Override
-	public Material findById(String id) {
+	public Material_Type findById(String id) {
 		Session session = sessionFactory.getCurrentSession();
-	    return session.get(Material.class, id);
+		return session.get(Material_Type.class, id);
 	}
 
 	@Override
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
-		Material obj = findById(id);
-	    session.remove(obj);
+		Material_Type entity = findById(id);
+		session.remove(entity);
 	}
 
 	@Override
-	public void update(Material entity) {
+	public void update(Material_Type entity) {
 		Session session = sessionFactory.getCurrentSession();
-	    session.update(entity);
+		session.update(entity);
 	}
 
 	@Override
 	public boolean isExist(String id) {
-		Material obj = findById(id);
+		Material_Type obj = findById(id);
 		if(obj != null)
 		{
 			return true;
 		}
-		return false;
+		else
+			return false;
 	}
-	
-	
+
 }

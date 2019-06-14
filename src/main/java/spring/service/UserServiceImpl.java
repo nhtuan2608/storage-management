@@ -9,6 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import spring.model.User;
 import spring.repository.GenericDAO;
 
+
+/**
+* UserServiceImpl
+* 
+* 
+*
+* @author  Tuan Nguyen
+* @version 1.0
+* @since   2019-06-11 
+*/
 @Service
 public class UserServiceImpl implements GenericService<User>{
 

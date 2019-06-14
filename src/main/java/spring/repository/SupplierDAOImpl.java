@@ -7,66 +7,57 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import spring.model.Material;
 
-/**
-* MaterialDAOImpl
-* 
-* 
-*
-* @author  Tuan Nguyen
-* @version 1.0
-* @since   2019-06-14 
-*/
+import spring.model.Supplier;
+
 @Repository
-public class MaterialDAOImpl implements GenericDAO<Material>{
+public class SupplierDAOImpl implements GenericDAO<Supplier>{
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public void save(Material entity) {
+	public void save(Supplier entity) {
 		Session session = sessionFactory.getCurrentSession();
-		Logger logger = Logger.getLogger(this.getClass().getName());
-		String msg = "Update Material: " + entity;
-		logger.info(msg);
 		session.saveOrUpdate(entity);
+		Logger logger = Logger.getLogger(this.getClass().getName());
+		String msg = "Update User: " + entity;
+		logger.info(msg);
 	}
 
 	@Override
-	public List<Material> findAll() {
+	public List<Supplier> findAll() {
 		Session session = sessionFactory.getCurrentSession();
-	    return session.createQuery("FROM Material", Material.class).getResultList();
+		return session.createQuery("FROM SUPPLIER",Supplier.class).getResultList();
 	}
 
 	@Override
-	public Material findById(String id) {
+	public Supplier findById(String id) {
 		Session session = sessionFactory.getCurrentSession();
-	    return session.get(Material.class, id);
+		return session.get(Supplier.class, id);
 	}
 
 	@Override
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
-		Material obj = findById(id);
-	    session.remove(obj);
+		Supplier obj = findById(id);
+		session.remove(obj);
 	}
 
 	@Override
-	public void update(Material entity) {
+	public void update(Supplier entity) {
 		Session session = sessionFactory.getCurrentSession();
-	    session.update(entity);
+		session.update(entity);
 	}
 
 	@Override
 	public boolean isExist(String id) {
-		Material obj = findById(id);
+		Supplier obj = findById(id);
 		if(obj != null)
 		{
 			return true;
 		}
 		return false;
 	}
-	
-	
+
 }

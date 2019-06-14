@@ -2,17 +2,22 @@ package spring.repository;
 
 import java.util.List;
 import java.util.logging.Logger;
-
-import javax.persistence.TypedQuery;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import spring.model.User;
 
+/**
+* CRUD
+* 
+* 
+*
+* @author  Tuan Nguyen
+* @version 1.0
+* @since   2019-06-11 
+*/
 @Repository
 public class UserDAOImpl implements GenericDAO<User> {
 
@@ -48,7 +53,6 @@ public class UserDAOImpl implements GenericDAO<User> {
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		User usr = findById(id);
-		System.out.println(usr);
 	    session.remove(usr);
 	}
 
@@ -60,8 +64,7 @@ public class UserDAOImpl implements GenericDAO<User> {
 
 	@Override
 	public boolean isExist(String id) {
-		Session session = sessionFactory.getCurrentSession();
-		User usr = session.get(User.class, id);
+		User usr = findById(id);
 		if(usr != null)
 		{
 			return true;
