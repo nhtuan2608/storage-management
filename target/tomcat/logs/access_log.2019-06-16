@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:16:44:04 +0700] "GET /api/user/ HTTP/1.1" 500 18129 http-bio-8080-exec-1 1480
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:16:46:21 +0700] "GET /api/user/ HTTP/1.1" 500 18129 http-bio-9090-exec-1 1248
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:16:46:41 +0700] "GET /api/user/ HTTP/1.1" 500 18129 http-bio-9090-exec-3 1047
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:16:54:57 +0700] "GET /api/showUser HTTP/1.1" 404 - http-bio-9090-exec-2 0
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:16:55:12 +0700] "GET /SpringMVC/api/showUser HTTP/1.1" 200 20 http-bio-9090-exec-3 632
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:16:55:21 +0700] "GET /SpringMVC/api/user HTTP/1.1" 200 746 http-bio-9090-exec-4 101
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:10:44 +0700] "GET /SpringMVC/api/user HTTP/1.1" 200 746 http-bio-9090-exec-1 657
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:10:51 +0700] "GET /SpringMVC/api/showUser HTTP/1.1" 200 20 http-bio-9090-exec-2 35
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:17:00 +0700] "GET /SpringMVC/api/showUser HTTP/1.1" 200 20 http-bio-9090-exec-1 620
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:17:05 +0700] "GET /SpringMVC/api/user HTTP/1.1" 200 746 http-bio-9090-exec-2 127
+127.0.0.1 - - [16/Jun/2019:17:19:07 +0700] "GET /SpringMVC/api/user HTTP/1.1" 200 746 http-bio-9090-exec-4 19
+127.0.0.1 - - [16/Jun/2019:17:19:24 +0700] "GET /SpringMVC/api/user/1 HTTP/1.1" 404 949 http-bio-9090-exec-6 16
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:20:08 +0700] "GET /SpringMVC/showUser HTTP/1.1" 200 4697 http-bio-9090-exec-8 1402
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:20:08 +0700] "GET /SpringMVC/img/logo.jpg;jsessionid=9E1A5917CDACFE9711125ACA6C727206 HTTP/1.1" 200 7422 http-bio-9090-exec-9 15
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:20:08 +0700] "GET /SpringMVC/js/bootstrap.js;jsessionid=9E1A5917CDACFE9711125ACA6C727206 HTTP/1.1" 200 123765 http-bio-9090-exec-1 13
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:20:08 +0700] "GET /SpringMVC/js/jquery-1.11.1.min.js;jsessionid=9E1A5917CDACFE9711125ACA6C727206 HTTP/1.1" 200 293072 http-bio-9090-exec-10 20
+0:0:0:0:0:0:0:1 - - [16/Jun/2019:17:20:08 +0700] "GET /SpringMVC/css/bootstrap.css;jsessionid=9E1A5917CDACFE9711125ACA6C727206 HTTP/1.1" 200 173597 http-bio-9090-exec-2 19

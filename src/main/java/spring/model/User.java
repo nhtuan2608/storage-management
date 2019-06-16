@@ -2,6 +2,9 @@ package spring.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,8 +26,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
 	@Id
+	@NotNull(message = "Not null")
 	private String id;
+	
+	@Size(max = 16, min = 4, message = "{user.password.invalid}")
+	@NotNull(message = "Not null")
 	private String password;
+	
+	@Size(max = 20, min = 4, message = "{user.userName.invalid}")
+	@NotNull(message = "Not null")
 	private String userName;
 	private String role;
 	

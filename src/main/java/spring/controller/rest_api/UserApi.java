@@ -1,4 +1,4 @@
-package spring.controller;
+package spring.controller.rest_api;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,22 +23,27 @@ import org.springframework.web.bind.annotation.RestController;
 import spring.model.User;
 import spring.service.GenericService;
 
-@Controller
-public class UserController {
+@RestController
+@RequestMapping("/api/")
+public class UserApi {
 	
 	@Autowired
     private GenericService<User> userService;
 	
-	//call to index.jsp
-	@GetMapping("/")
-	public String showHomePage() {
-	   // Get authenticated user name from SecurityContext
-//	   SecurityContext context = SecurityContextHolder.getContext();
-//	      
-//	   model.addAttribute("message", "You are logged in as " 
-//	                     + context.getAuthentication().getName());
-		return "index";
-	}
+//	@GetMapping("/users")
+//	public @ResponseBody User[] getUser() {
+//		User[] users = new User[] { new User("MH14","Tuan","123456","Admin"), new User("MH13","Dung","123456","user")};
+//		return users;
+//	}
+	
+	 @GetMapping(value = "/user")
+	    public ResponseEntity<List<User>> listAllUsers() {
+	        List<User> users = userService.findAll();
+	        if(users.isEmpty()){
+	            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	    }
 	
 	@GetMapping("/new")
 	public String newUser() {
