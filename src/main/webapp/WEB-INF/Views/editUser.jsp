@@ -1,11 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page import = "java.util.logging.Logger" %>
-<html>
-<head>
-<title>Helo Spring MVC + JDBC</title>
-</head>
-<body>
+
+<div class="container-fluid">
   <% Logger logger = Logger.getLogger(this.getClass().getName());%>
   <a href="<c:url value="/showUser" />">List User</a>
   <br />
@@ -30,5 +27,4 @@
         + pageContext.findAttribute("user");
         logger.info(message); 
 %>
-</body>
-</html>
+</div>

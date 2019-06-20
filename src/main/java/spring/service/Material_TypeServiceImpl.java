@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import spring.model.Material_Type;
 import spring.repository.GenericDAO;
 
 @Service
+@Transactional
 public class Material_TypeServiceImpl implements GenericService<Material_Type>{
 
 	@Autowired
@@ -41,8 +43,8 @@ public class Material_TypeServiceImpl implements GenericService<Material_Type>{
 	}
 
 	@Override
-	public boolean isExist(String id) {
-		return materialTypeDAO.isExist(id);
+	public boolean isExist(Material_Type entity) {
+		return materialTypeDAO.isExist(entity);
 	}
 	
 }

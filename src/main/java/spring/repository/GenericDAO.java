@@ -17,5 +17,5 @@ public interface GenericDAO<E> {
 	E findById(String id);
 	void delete(String id);
 	void update(E entity);
-	boolean isExist(String id);
+	boolean isExist(E entity);
 }

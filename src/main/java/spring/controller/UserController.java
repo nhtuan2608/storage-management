@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,22 +33,17 @@ public class UserController {
 	
 	//call to index.jsp
 	@GetMapping("/")
-	public String showHomePage() {
-	   // Get authenticated user name from SecurityContext
-//	   SecurityContext context = SecurityContextHolder.getContext();
-//	      
-//	   model.addAttribute("message", "You are logged in as " 
-//	                     + context.getAuthentication().getName());
+	public String showHomePage(ModelMap modelMap) {
 		return "index";
 	}
 	
 	@GetMapping("/new")
-	public String newUser() {
+	public String newUser(ModelMap modelMap) {
 		return "newUser";
 	}
 	
 	@GetMapping("/showUser")
-	public String showUser(Model model) {
+	public String showUser(Model model,ModelMap modelMap) {
 		model.addAttribute("listUsers", userService.findAll());
 		return "showUser";
 	}
@@ -61,7 +57,7 @@ public class UserController {
 	
 	@RequestMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") @Valid User entity,
-                            BindingResult result, Model model) {
+                            BindingResult result, Model model,ModelMap modelMap) {
         if (result.hasErrors()) {
             model.addAttribute("listUsers", userService.findAll());
             return "newUser";
@@ -71,7 +67,7 @@ public class UserController {
     }
 	
 	@RequestMapping("/deleteUser/{id}")
-	public String deleteUser(@PathVariable String id, Model model) {
+	public String deleteUser(@PathVariable String id, Model model,ModelMap modelMap) {
 		userService.delete(id);
 		model.addAttribute("listUsers", userService.findAll());
 		return "showUser";

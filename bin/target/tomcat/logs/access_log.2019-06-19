@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:45:14 +0700] "GET /SpringMVC/ HTTP/1.1" 200 1667 http-bio-9090-exec-1 704
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:45:14 +0700] "GET /SpringMVC/js/bootstrap.js;jsessionid=FC9DAF9D0FF6D9F115C590B4E93026B8 HTTP/1.1" 200 123765 http-bio-9090-exec-4 22
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:45:14 +0700] "GET /SpringMVC/css/bootstrap.css;jsessionid=FC9DAF9D0FF6D9F115C590B4E93026B8 HTTP/1.1" 200 173597 http-bio-9090-exec-3 24
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:45:14 +0700] "GET /SpringMVC/js/jquery-1.11.1.min.js;jsessionid=FC9DAF9D0FF6D9F115C590B4E93026B8 HTTP/1.1" 200 293072 http-bio-9090-exec-2 26
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:45:14 +0700] "GET /SpringMVC/css/bootstrap.css.map HTTP/1.1" 404 949 http-bio-9090-exec-6 7
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:45:14 +0700] "GET /SpringMVC/js/bootstrap.js.map HTTP/1.1" 404 949 http-bio-9090-exec-7 7
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:47:26 +0700] "GET /SpringMVC/ HTTP/1.1" 200 1535 http-bio-9090-exec-1 117
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:47:26 +0700] "GET /SpringMVC/css/bootstrap.css.map HTTP/1.1" 404 949 http-bio-9090-exec-2 6
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:47:26 +0700] "GET /SpringMVC/js/bootstrap.js.map HTTP/1.1" 404 949 http-bio-9090-exec-3 12
+0:0:0:0:0:0:0:1 - - [19/Jun/2019:22:48:27 +0700] "GET /SpringMVC/ HTTP/1.1" 200 1535 http-bio-9090-exec-6 7

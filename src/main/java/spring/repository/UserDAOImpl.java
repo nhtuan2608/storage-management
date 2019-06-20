@@ -23,12 +23,13 @@ public class UserDAOImpl implements GenericDAO<User> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	Logger logger = Logger.getLogger(this.getClass().getName());
+		
 	@Override
 	public void save(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		Logger logger = Logger.getLogger(this.getClass().getName());
-		String msg = "Update User: " + user;
+		
+		String msg = "Saved User: " + user;
 		logger.info(msg);
 		session.saveOrUpdate(user);
 	}
@@ -40,20 +41,36 @@ public class UserDAOImpl implements GenericDAO<User> {
 //		return query.getResultList();
 //		
 		Session session = sessionFactory.getCurrentSession();
-	    return session.createQuery("FROM User", User.class).getResultList();
+		List<User> users = session.createQuery("FROM User", User.class).getResultList();
+		if(users.size() > 0)
+		{
+			String msg = "Found "+ users.size() +" User: " + users;
+			logger.info(msg);
+		}
+		else if(users.size() == 0)
+		{
+			String msg = "Found 0 User.";
+			logger.info(msg);
+		}
+	    return users;
 	}
 
 	@Override
 	public User findById(String id) {
 		Session session = sessionFactory.getCurrentSession();
-	    return session.get(User.class, id);
+		User user = session.get(User.class, id);
+		String msg = "Found: " + user;
+		logger.info(msg);
+	    return user;
 	}
 
 	@Override
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
-		User usr = findById(id);
-	    session.remove(usr);
+		User user = findById(id);
+	    session.remove(user);
+	    String msg = "Deleted: " + user;
+		logger.info(msg);
 	}
 
 	@Override
@@ -63,13 +80,9 @@ public class UserDAOImpl implements GenericDAO<User> {
 	}
 
 	@Override
-	public boolean isExist(String id) {
-		User usr = findById(id);
-		if(usr != null)
-		{
-			return true;
-		}
-		return false;
+	public boolean isExist(User entity) {
+		return findById(entity.getId()) != null;
+
 	}
 	
 }

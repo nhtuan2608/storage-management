@@ -51,13 +51,8 @@ public class SupplierDAOImpl implements GenericDAO<Supplier>{
 	}
 
 	@Override
-	public boolean isExist(String id) {
-		Supplier obj = findById(id);
-		if(obj != null)
-		{
-			return true;
-		}
-		return false;
+	public boolean isExist(Supplier entity) {
+		return findById(entity.getId()) != null;
 	}
 
 }

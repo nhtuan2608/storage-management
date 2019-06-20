@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+      "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+      "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
+<tiles-definitions>
+
+	<definition name="mainLayout" template="/WEB-INF/Views/layout/main.jsp">
+		<put-attribute name="title" value="" /> 
+		<put-attribute name="header" value="/WEB-INF/Views/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/Views/layout/footer.jsp" />
+	</definition>
+
+	<definition name="index" extends="mainLayout">
+		<put-attribute name="title" value="Home Page" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/index.jsp" />
+	</definition>
+	
+	<definition name="showUser" extends="mainLayout">
+		<put-attribute name="title" value="All User Page" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/showUser.jsp" />
+	</definition>
+	
+	<definition name="editUser" extends="mainLayout">
+		<put-attribute name="title" value="Edit User Page" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/editUser.jsp" />
+	</definition> 
+
+</tiles-definitions>

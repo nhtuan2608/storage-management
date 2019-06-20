@@ -12,7 +12,7 @@
 </head>
 <body>
 <h2>Create new User</h2>
-<%-- <form name="userForm" action="saveUser" method="POST" modelAttribute="user">
+<form name="userForm" action="saveUser" method="POST" modelAttribute="user">
 <table>
 	<tr>
 		<td>User #: </td>
@@ -36,9 +36,9 @@
 		<input type="submit" value="Create User" name="btnSubmit"/></td>
 	</tr>
 </table>
-</form> --%>
+</form>
 
- <form:form action="saveUser" method="POST" modelAttribute="user">
+<%--  <form:form action="saveUser" method="POST" modelAttribute="user">
 ID: <form:input path="id"/> <br><br>
 <form:errors path="id" cssClass="error"/><br><br>   
 Username: <form:input path="userName"/> <br><br>
@@ -47,6 +47,6 @@ Password(*): <form:password path="password"/>
 <form:errors path="password" cssClass="error"/><br><br>
 Role: <form:input path="role"/> <br><br>
 <input type="submit" value="submit">  
-</form:form>
+</form:form> --%>
 </body>
 </html>

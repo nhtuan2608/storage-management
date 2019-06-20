@@ -20,13 +20,13 @@ import spring.repository.GenericDAO;
 * @since   2019-06-11 
 */
 @Service
+@Transactional
 public class UserServiceImpl implements GenericService<User>{
 
 	   @Autowired
 	   private GenericDAO<User> userDAO;
 	 
 	   @Override
-	   @Transactional
 	   public void save(User user) {
 		   userDAO.save(user);
 	   }
@@ -38,26 +38,22 @@ public class UserServiceImpl implements GenericService<User>{
 	   }
 
 	@Override   
-	@Transactional
 	public void update(User user) {
 		userDAO.update(user);
 	}
 
 	@Override
-	@Transactional
 	public User findById(String id) {
 		return userDAO.findById(id);
 	}
 
 	@Override
-	@Transactional
 	public void delete(String id) {
 		userDAO.delete(id);	
 	}
 
 	@Override
-	@Transactional
-	public boolean isExist(String id) {
-		return userDAO.isExist(id);
+	public boolean isExist(User entity) {
+		return userDAO.isExist(entity);
 	}
 }

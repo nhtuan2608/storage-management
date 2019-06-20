@@ -24,20 +24,38 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
  
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "spring")
 public class WebMVCConfig implements WebMvcConfigurer {
 	
-   @Bean
-   public InternalResourceViewResolver resolver() {
-      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-      resolver.setViewClass(JstlView.class);
-      resolver.setPrefix("/WEB-INF/Views/");
-      resolver.setSuffix(".jsp");
-      return resolver;
-   }
+	@Bean(name = "viewResolver")
+	public UrlBasedViewResolver viewResolver() {
+		UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
+		tilesViewResolver.setViewClass(TilesView.class);
+		return tilesViewResolver;
+	}
+
+	@Bean(name = "tilesConfigurer")
+	public TilesConfigurer tilesConfigurer() {
+		TilesConfigurer tiles = new TilesConfigurer();
+		tiles.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
+		return tiles;
+
+	}
+	
+//   @Bean
+//   public InternalResourceViewResolver resolver() {
+//      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//      resolver.setViewClass(JstlView.class);
+//      resolver.setPrefix("/WEB-INF/Views/");
+//      resolver.setSuffix(".jsp");
+//      return resolver;
+//   }
  
    @Bean
    public MessageSource messageSource() {
@@ -65,6 +83,18 @@ public class WebMVCConfig implements WebMvcConfigurer {
 	   registry
 	   	.addResourceHandler("/css/**")
 	   	.addResourceLocations("classpath:/statics/css/")
+	      .setCachePeriod(3600)
+	      .resourceChain(true)
+	      .addResolver(new PathResourceResolver());
+	   registry
+	   	.addResourceHandler("/fonts/**")
+	   	.addResourceLocations("classpath:/statics/fonts/")
+	      .setCachePeriod(3600)
+	      .resourceChain(true)
+	      .addResolver(new PathResourceResolver());
+	   registry
+	   	.addResourceHandler("/vendor/**")
+	   	.addResourceLocations("classpath:/statics/vendor/")
 	      .setCachePeriod(3600)
 	      .resourceChain(true)
 	      .addResolver(new PathResourceResolver());

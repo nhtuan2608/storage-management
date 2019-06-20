@@ -49,14 +49,8 @@ public class Material_TypeDAOImpl implements  GenericDAO<Material_Type>{
 	}
 
 	@Override
-	public boolean isExist(String id) {
-		Material_Type obj = findById(id);
-		if(obj != null)
-		{
-			return true;
-		}
-		else
-			return false;
+	public boolean isExist(Material_Type entity) {
+		return findById(entity.getId()) != null;
 	}
 
 }
