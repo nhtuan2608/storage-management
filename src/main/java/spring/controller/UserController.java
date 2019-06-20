@@ -16,16 +16,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-=======
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
->>>>>>> Tuan
 
 import spring.model.User;
 import spring.service.GenericService;
@@ -48,37 +43,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/showUser")
-<<<<<<< HEAD
-	public String showUser(Model model) {
-		model.addAttribute("listUsers", userService.findAll());
-		return "showUser";
-	}
-	
-	@RequestMapping("/editUser/{id}")
-	public String editUser(@PathVariable String id, Model model) {
-		User user = userService.findById(id);
-		model.addAttribute("user",user);
-		return "editUser";
-	}
-	
-	@RequestMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") @Valid User user,
-                            BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            model.addAttribute("listUsers", userService.findAll());
-            return "newUser";
-        }
-        userService.save(user);
-        //model.addAttribute("listUsers", userService.findAll());
-        return "redirect:showUser";
-    }
-	
-	@RequestMapping("/deleteUser/{id}")
-	public String deleteUser(@PathVariable String id, Model model) {
-		userService.delete(id);
-=======
 	public String showUser(Model model,ModelMap modelMap) {
->>>>>>> Tuan
 		model.addAttribute("listUsers", userService.findAll());
 		return "showUser";
 	}
@@ -90,9 +55,6 @@ public class UserController {
 		return "editUser";
 	}
 	
-<<<<<<< HEAD
-
-=======
 	@RequestMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") @Valid User entity,
                             BindingResult result, Model model,ModelMap modelMap) {
@@ -110,5 +72,4 @@ public class UserController {
 		model.addAttribute("listUsers", userService.findAll());
 		return "showUser";
 	}
->>>>>>> Tuan
 }
