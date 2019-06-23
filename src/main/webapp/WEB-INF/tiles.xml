@@ -4,6 +4,7 @@
       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
 <tiles-definitions>
 
+	<!-- Configure for template layout -->
 	<definition name="mainLayout" template="/WEB-INF/Views/layout/main.jsp">
 		<put-attribute name="title" value="" /> 
 		<put-attribute name="header" value="/WEB-INF/Views/layout/header.jsp" />
@@ -11,19 +12,58 @@
 		<put-attribute name="footer" value="/WEB-INF/Views/layout/footer.jsp" />
 	</definition>
 
+	<!-- Configure for index in template layout -->
 	<definition name="index" extends="mainLayout">
-		<put-attribute name="title" value="Home Page" /> 
+		<put-attribute name="title" value="home.title" /> 
 		<put-attribute name="body" value="/WEB-INF/Views/index.jsp" />
 	</definition>
 	
+	<!-- Configure for user pages in template layout -->
 	<definition name="showUser" extends="mainLayout">
-		<put-attribute name="title" value="All User Page" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/showUser.jsp" />
+		<put-attribute name="title" value="userPage.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/user/showUser.jsp" />
 	</definition>
 	
 	<definition name="editUser" extends="mainLayout">
-		<put-attribute name="title" value="Edit User Page" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/editUser.jsp" />
+		<put-attribute name="title" value="editUser.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/user/editUser.jsp" />
+	</definition> 
+	
+	<definition name="addUser" extends="mainLayout">
+		<put-attribute name="title" value="addUser.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/user/addUser.jsp" />
 	</definition> 
 
+
+	<!-- Configure for merchandise pages in template layout -->
+	<definition name="showMerchandise" extends="mainLayout">
+		<put-attribute name="title" value="merchandisePage.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/mechandise/showMerchandise.jsp" />
+	</definition>
+	
+	<definition name="editMerchandise" extends="mainLayout">
+		<put-attribute name="title" value="editMerchandise.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/mechandise/editMerchandise.jsp" />
+	</definition> 
+	
+	<definition name="addMerchandise" extends="mainLayout">
+		<put-attribute name="title" value="addMerchandise.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/mechandise/addMerchandise.jsp" />
+	</definition>
+	
+	<!-- Configure for merchandise_type pages in template layout -->
+	<definition name="showMerchandise_type" extends="mainLayout">
+		<put-attribute name="title" value="merchandisePage.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/showMerchandise_type.jsp" />
+	</definition>
+	
+	<definition name="editMerchandise_type" extends="mainLayout">
+		<put-attribute name="title" value="editMerchandise.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/editMerchandise_type.jsp" />
+	</definition> 
+	
+	<definition name="addMerchandise_type" extends="mainLayout">
+		<put-attribute name="title" value="addMerchandise.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/addMerchandise_type.jsp" />
+	</definition>
 </tiles-definitions>
