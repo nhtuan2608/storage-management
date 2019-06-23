@@ -8,6 +8,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import spring.model.Merchandise;
+import spring.model.Merchandise_Type;
 import spring.model.User;
 
  
@@ -23,6 +25,8 @@ public class HibernateConfig {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
         factoryBean.setAnnotatedClasses(User.class);
+        factoryBean.setAnnotatedClasses(Merchandise.class);
+        factoryBean.setAnnotatedClasses(Merchandise_Type.class);
         return factoryBean;
     }
  

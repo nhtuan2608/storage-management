@@ -1,7 +1,6 @@
 package spring.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
@@ -27,7 +26,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
- 
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "spring")
@@ -48,14 +47,14 @@ public class WebMVCConfig implements WebMvcConfigurer {
 
 	}
 	
-//   @Bean
-//   public InternalResourceViewResolver resolver() {
-//      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//      resolver.setViewClass(JstlView.class);
-//      resolver.setPrefix("/WEB-INF/Views/");
-//      resolver.setSuffix(".jsp");
-//      return resolver;
-//   }
+   @Bean
+   public InternalResourceViewResolver resolver() {
+      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+      resolver.setViewClass(JstlView.class);
+      resolver.setPrefix("/WEB-INF/Views/");
+      resolver.setSuffix(".jsp");
+      return resolver;
+   }
  
    @Bean
    public MessageSource messageSource() {

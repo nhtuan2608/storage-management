@@ -10,10 +10,11 @@ F:\eclipse-workspace\SpringMVC\src\main\java\spring\service\MaterialServiceImpl.
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\controller\UserController.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\config\HibernateConfig.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\model\Supplier.java
+F:\eclipse-workspace\SpringMVC\src\main\java\spring\controller\rest_api\UserApi.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\config\WebMVCSecurityConfig.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\repository\Material_TypeDAOImpl.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\config\ApplicationConTextConfig.java
-F:\eclipse-workspace\SpringMVC\src\main\java\spring\config\RestClient.java
+F:\eclipse-workspace\SpringMVC\src\main\java\spring\controller\indexController.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\service\GenericService.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\model\Material.java
 F:\eclipse-workspace\SpringMVC\src\main\java\spring\service\SupplierServiceImpl.java

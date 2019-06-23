@@ -68,7 +68,7 @@ public class UserApi {
 	// -------------------Create a User
 	// ------------------------------------------------------------------------------
 
-	@PostMapping("/add/")
+	@PostMapping("/addUser/")
 	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
 		
 
@@ -107,7 +107,7 @@ public class UserApi {
 
 	// --------------------------------- Delete User
 	// ---------------------------------------------------------------------------------
-	@GetMapping("/delete/{id}")
+	@GetMapping("/deleteUser/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable String id) {
 
 		User user = userService.findById(id);
