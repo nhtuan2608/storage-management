@@ -40,10 +40,16 @@ public class UserController {
 	}
 
 	@PostMapping("/saveUser")
-	public String saveUser(@ModelAttribute("user") @Valid User entity, BindingResult result) {
+	public String saveUser(@ModelAttribute("user") @Valid User entity, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			System.out.println("Error saving: " + result.getAllErrors());
-			return "editUser";
+			return "addUser";
+		}
+		if(userService.isExist(entity))
+		{
+			System.out.println("User " + entity.getUserName() + " exists.");
+			model.addAttribute("userExisted", entity);
+			return "addUser";
 		}
 		System.out.println("save User: " + entity);
 		System.out.println("to the save service");

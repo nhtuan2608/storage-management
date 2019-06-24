@@ -2,10 +2,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.logging.Logger"%>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,6 +54,10 @@ td .td_Id {
 	position: relative;
 	flex: auto;
 }
+.error{
+	font-size: 15px;
+	color: red;
+}
 </style>
 
 </head>
@@ -86,7 +91,39 @@ td .td_Id {
 			$('#table_id').DataTable();
 		});
 	</script> 
-
+	<script>
+	function submitDropBox()
+	{
+		var x = document.getElementById("dropBox").value;
+		console.log(x)
+		if(x === "")
+		{
+			document.getElementById("errorDropBox").innerHTML = "Choose another";
+			return false;
+		}
+		return true;
+	}
+	</script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+ 
+    $(document).ready(function() {
+ 
+        //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+        $("#formDemo").validate({
+            rules: {
+                id: "required",
+                userName: "required",
+                password: "required",
+                role: "required",
+            },
+            messages: {
+            	id: "Vui lòng nhập họ",
+            	userName: "Vui lòng nhập tên"
+            }
+        });
+    });
+    </script>
 </body>
 <%-- <%
 	String message = "path = " + pageContext.findAttribute("path");

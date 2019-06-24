@@ -1,6 +1,7 @@
 package spring.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
@@ -27,6 +28,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
+import spring.validator.dropBoxValidator;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "spring")
@@ -45,6 +48,20 @@ public class WebMVCConfig implements WebMvcConfigurer {
 		tiles.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
 		return tiles;
 
+	}
+	
+	@Bean
+	public CharacterEncodingFilter filter() {
+		CharacterEncodingFilter cef = new CharacterEncodingFilter();
+		cef.setBeanName("encoding");
+		cef.setEncoding("UTF-8");
+		cef.setForceEncoding(true);
+		return cef;
+	}
+	
+	@Bean
+	public dropBoxValidator dropBoxValidator() {
+		return new dropBoxValidator();
 	}
 	
    @Bean

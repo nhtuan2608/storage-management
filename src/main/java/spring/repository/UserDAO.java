@@ -28,7 +28,6 @@ public class UserDAO implements GenericDAO<User> {
 	@Override
 	public void save(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		
 		String msg = "Saved User: " + user;
 		logger.info(msg);
 		session.saveOrUpdate(user);
@@ -76,6 +75,8 @@ public class UserDAO implements GenericDAO<User> {
 	@Override
 	public void update(User user) {
 		Session session = sessionFactory.getCurrentSession();
+		String msg = "Updated User: " + user;
+		logger.info(msg);
 	    session.update(user);
 	}
 

@@ -9,21 +9,19 @@
 <div style="margin-left: 20px">
 	<a href="${urlShowUser}"> <span class="fas fa-angle-double-left"> <u> List User </u> </span> </a>
 	<h2>Create new User</h2>
-	<form name="userForm" action="saveUser"
-		method="POST" modelAttribute="user" >
+	<form autocomplete="off" name="userForm" action="saveUser"
+		method="POST" modelAttribute="user" id="formDemo" >
 		<div></div>
 		<table>
 
 			<tr>
-				<td>User #:</td>
-				<td><input name="id" data-validation="required"
-					data-validation-error-msg="You did not enter a valid e-mail"
-					data-validation-error-msg-container="#email-error-dialog"
-					style="font-size: 15px;" /></td>
+				<td>User ID:</td>
+				<td><input name="id" style="font-size: 15px;" type="text" /></td>
+				<td id="label"></td>
 			</tr>
 			<tr>
 				<td>User Name:</td>
-				<td><input type="text" name="userName" style="font-size: 15px;" /></td>
+				<td><input type="text" name="userName" style="font-size: 15px;"   /></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
@@ -39,4 +37,23 @@
 			</tr>
 		</table>
 	</form>
+	<c:if test="${not empty userExisted}">
+		<%-- <c:out value="${userExisted}"></c:out> --%>
+		<script type="text/javascript">
+			document.getElementById("label").innerHTML = "Error";
+			document.getElementById("label").style.color = "red";
+		/*  $(document).ready(function() {
+			 
+		        //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
+		        $("#formDemo").validate({
+		            rules: {
+		                id: "required"
+		            },
+		            messages: {
+		            	id: "User đã bị trùng"
+		            }
+		        });
+		    }); */
+		</script>
+	</c:if>
 </div>

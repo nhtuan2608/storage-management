@@ -27,14 +27,14 @@ public class Merchandise {
 	@Id
 	private String id;
 	
-	@NotNull(message = "Not null")
-	@Size(min = 3, max = 20, message = "Please  enter name is between 3 and 20 characters")
+//	@NotNull(message = "Not null")
+//	@Size(min = 3, max = 20, message = "Please  enter name is between 3 and 20 characters")
 	private String name;
 	
-	@NotNull(message = "Not null")
+//	@NotNull(message = "Not null")
 	private String merchandise_type_id;
 	
-	@NotNull(message = "Not null")
+//	@NotNull(message = "Not null")
 	private String supplier_id;
 	
 	
