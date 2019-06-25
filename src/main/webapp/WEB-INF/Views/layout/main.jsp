@@ -55,8 +55,17 @@ td .td_Id {
 	flex: auto;
 }
 .error{
-	font-size: 15px;
+	font-size: 13px;
 	color: red;
+}
+label.error{
+	margin-left: 16px;
+}
+
+select#role {
+	width: 180px;
+	height: 28.4px;
+	text-align: center;
 }
 </style>
 
@@ -112,14 +121,22 @@ td .td_Id {
         //Khi bàn phím được nhấn và thả ra thì sẽ chạy phương thức này
         $("#formDemo").validate({
             rules: {
+                userName: {
+                	required: true,
+                	minlength: 4,
+                	maxlength: 20
+                },
                 id: "required",
-                userName: "required",
                 password: "required",
                 role: "required",
             },
             messages: {
-            	id: "Vui lòng nhập họ",
-            	userName: "Vui lòng nhập tên"
+/*             	userName: {
+            		required: "please enter username",
+                	minlength: "Ký tự tối thiểu là 4",
+                	maxlength: "Ký tự tối đa là 20"
+            	},
+            	id: "Vui lòng nhập tên" */
             }
         });
     });

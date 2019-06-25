@@ -56,4 +56,9 @@ public class UserService implements GenericService<User>{
 	public boolean isExist(User entity) {
 		return userDAO.isExist(entity);
 	}
+
+	@Override
+	public boolean findByName(String userName) {
+		return userDAO.findByName(userName);
+	}
 }

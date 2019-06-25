@@ -58,5 +58,10 @@ public class MerchandiseService implements GenericService<Merchandise>{
 	public boolean isExist(Merchandise entity) {
 		return merchandiseDAO.isExist(entity);
 	}
+	@Override
+	public boolean findByName(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

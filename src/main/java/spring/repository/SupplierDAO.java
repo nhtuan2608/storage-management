@@ -55,4 +55,11 @@ public class SupplierDAO implements GenericDAO<Supplier>{
 		return findById(entity.getId()) != null;
 	}
 
+	@Override
+	public boolean findByName(String userName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }

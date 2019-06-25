@@ -64,14 +64,14 @@ public class WebMVCConfig implements WebMvcConfigurer {
 		return new dropBoxValidator();
 	}
 	
-   @Bean
-   public InternalResourceViewResolver resolver() {
-      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-      resolver.setViewClass(JstlView.class);
-      resolver.setPrefix("/WEB-INF/Views/");
-      resolver.setSuffix(".jsp");
-      return resolver;
-   }
+//   @Bean
+//   public InternalResourceViewResolver resolver() {
+//      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//      resolver.setViewClass(JstlView.class);
+//      resolver.setPrefix("/WEB-INF/Views/");
+//      resolver.setSuffix(".jsp");
+//      return resolver;
+//   }
  
    @Bean
    public MessageSource messageSource() {

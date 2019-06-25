@@ -1,6 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:url value="/" var="urlIndex" />
 <c:url value="/addUser" var="urlAddUser" />
+<c:url value="/showUser" var="urlShowUser" />
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -40,7 +41,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" href="showUser">All user</a>
+            <a class="collapse-item" href="${urlShowUser}">All user</a>
             <a class="collapse-item" href="${urlAddUser}">Add new user</a>
           </div>
         </div>

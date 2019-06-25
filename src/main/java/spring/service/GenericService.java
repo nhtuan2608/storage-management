@@ -18,4 +18,5 @@ public interface GenericService<E> {
 	void delete(String id);
 	void update(E entity);
 	boolean isExist(E entity);
+	boolean findByName(String userName);
 }

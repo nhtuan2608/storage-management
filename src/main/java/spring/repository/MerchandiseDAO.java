@@ -63,6 +63,12 @@ public class MerchandiseDAO implements GenericDAO<Merchandise>{
 	public boolean isExist(Merchandise entity) {
 		return findById(entity.getId()) != null;
 	}
+
+	@Override
+	public boolean findByName(String userName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }

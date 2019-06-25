@@ -53,4 +53,10 @@ public class Merchandise_TypeDAO implements  GenericDAO<Merchandise_Type>{
 		return findById(entity.getId()) != null;
 	}
 
+	@Override
+	public boolean findByName(String userName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

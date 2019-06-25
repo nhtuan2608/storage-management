@@ -47,4 +47,9 @@ public class SupplierService implements GenericService<Supplier>{
 		return supplierDAO.isExist(entity);
 	}
 
+	@Override
+	public boolean findByName(String id) {
+		return false;
+	}
+
 }

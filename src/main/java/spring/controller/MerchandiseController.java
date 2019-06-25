@@ -33,14 +33,14 @@ public class MerchandiseController{
 	@Autowired
 	private GenericService<Merchandise_Type> merchandise_TypeService;
 	
-	@Autowired
-    @Qualifier("dropBoxValidator")
-    private Validator validator;
-	
-	@InitBinder
-    private void initBinder(WebDataBinder binder) {
-        binder.setValidator(validator);
-    }
+//	@Autowired
+//    @Qualifier("dropBoxValidator")
+//    private Validator validator;
+//	
+//	@InitBinder
+//    private void initBinder(WebDataBinder binder) {
+//        binder.setValidator(validator);
+//    }
 	
 	@GetMapping("/addMerchandise")
 	public String newMerchandise(Model model) {

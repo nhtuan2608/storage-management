@@ -22,7 +22,7 @@ public class UserController {
 	
 	@GetMapping("/addUser")
 	public String newUser(Model model) {
-		model.addAttribute("user", new User());
+		contructorModel(model);
 		return "addUser";
 	}
 
@@ -42,13 +42,17 @@ public class UserController {
 	@PostMapping("/saveUser")
 	public String saveUser(@ModelAttribute("user") @Valid User entity, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			contructorModel(model);
+			System.out.println("Model: " + model);
 			System.out.println("Error saving: " + result.getAllErrors());
 			return "addUser";
 		}
-		if(userService.isExist(entity))
+		if(userService.findByName(entity.getUserName()))
 		{
 			System.out.println("User " + entity.getUserName() + " exists.");
 			model.addAttribute("userExisted", entity);
+			contructorModel(model);
+			System.out.println("Model: " + model);
 			return "addUser";
 		}
 		System.out.println("save User: " + entity);
@@ -75,5 +79,28 @@ public class UserController {
 			}
 		}
 		return listUsers;
+	}
+	
+	public Model contructorModel(Model model) {
+		List<User> listUsers = userService.findAll();
+		int length = listUsers.size();
+		int id;
+		if(length == 0 || listUsers == null)
+		{
+			id = 1;
+			User user = new User();
+			user.setId("UID"+id);
+			model.addAttribute("user", user);
+			System.out.println(model);
+		}
+		else
+		{
+			id = (length + 1);
+			User user = new User();
+			user.setId("UID"+id);
+			model.addAttribute("user", user);
+			System.out.println(model);
+		}
+		return model;
 	}
 }

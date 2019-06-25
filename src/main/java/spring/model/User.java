@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 /**
 * @Data đại diện cho get, set và có thể xài cho restAPI
 * @AllArgsConstructor đại diện cho mọi constructor
@@ -24,10 +23,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor()
 public class User {
 	@Id
-	@NotNull(message = "Not null")
 	private String id;
 	
-	@Size(max = 16, min = 4, message = "{user.password.invalid}")
+	@Size(max = 12, min = 4, message = "{user.password.invalid}")
 	@NotNull(message = "Not null")
 	private String password;
 	

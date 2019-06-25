@@ -85,5 +85,15 @@ public class UserDAO implements GenericDAO<User> {
 		return findById(entity.getId()) != null;
 
 	}
+
+	@Override
+	public boolean findByName(String userName) {
+		Session session = sessionFactory.getCurrentSession();
+		User user = session.get(User.class, userName);
+		if(user != null) {
+			return true;
+		}
+		return false;
+	}
 	
 }

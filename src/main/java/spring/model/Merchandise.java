@@ -2,8 +2,6 @@ package spring.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +34,6 @@ public class Merchandise {
 	
 //	@NotNull(message = "Not null")
 	private String supplier_id;
-	
 	
 	private int amount;
 	private String unit;
