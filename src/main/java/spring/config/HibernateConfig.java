@@ -8,8 +8,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import spring.model.Address;
 import spring.model.Merchandise;
 import spring.model.Merchandise_Type;
+import spring.model.Supplier;
 import spring.model.User;
 
  
@@ -27,6 +29,8 @@ public class HibernateConfig {
         factoryBean.setAnnotatedClasses(User.class);
         factoryBean.setAnnotatedClasses(Merchandise.class);
         factoryBean.setAnnotatedClasses(Merchandise_Type.class);
+        factoryBean.setAnnotatedClasses(Supplier.class);
+        factoryBean.setAnnotatedClasses(Address.class);
         return factoryBean;
     }
  

@@ -22,11 +22,7 @@ public class UserService implements GenericService<User>{
 
 	   @Autowired
 	   private GenericDAO<User> userDAO;
-	   
-//	   public UserService(@Qualifier("users") UserDAO userDAO) {
-//		   this.userDAO = userDAO;
-//	   }
-//	 
+
 	   @Override
 	   public void save(User user) {
 		   userDAO.save(user);
@@ -60,5 +56,11 @@ public class UserService implements GenericService<User>{
 	@Override
 	public boolean findByName(String userName) {
 		return userDAO.findByName(userName);
+	}
+
+	@Override
+	public User findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

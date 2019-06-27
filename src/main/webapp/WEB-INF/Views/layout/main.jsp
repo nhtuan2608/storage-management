@@ -67,6 +67,14 @@ select#role {
 	height: 28.4px;
 	text-align: center;
 }
+select#dropBox {
+	width: 180px;
+	height: 28.4px;
+	text-align: center;
+}
+#strongDetailSupplier{
+	padding-left: 10px;
+}
 </style>
 
 </head>
@@ -107,7 +115,7 @@ select#role {
 		console.log(x)
 		if(x === "")
 		{
-			document.getElementById("errorDropBox").innerHTML = "Choose another";
+			document.getElementById("errorDropBox").innerHTML = "This field is required.";
 			return false;
 		}
 		return true;
@@ -131,14 +139,30 @@ select#role {
                 role: "required",
             },
             messages: {
-/*             	userName: {
-            		required: "please enter username",
+/*              	userName: {
+            		required: "Please enter username",
                 	minlength: "Ký tự tối thiểu là 4",
                 	maxlength: "Ký tự tối đa là 20"
-            	},
-            	id: "Vui lòng nhập tên" */
+            	}, */
+            	/*id: "Vui lòng nhập tên" */
             }
         });
+        
+        $("#form_merchandise_type").validate({
+            rules: {
+                name: {
+                	required: true,
+                	minlength: 4,
+                	maxlength: 20
+                },
+                id: "required"
+            },
+            messages: {
+            }
+        });
+        $("a").click(function(){
+            $("footer").addClass("sticky-footer bg-white fixed-bottom");
+          });
     });
     </script>
 </body>

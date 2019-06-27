@@ -66,4 +66,25 @@
 		<put-attribute name="title" value="addMerchandise.title" /> 
 		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/addMerchandise_type.jsp" />
 	</definition>
+	
+	<!-- Configure for supplier pages in template layout -->
+	<definition name="showSupplier" extends="mainLayout">
+		<put-attribute name="title" value="supplierPage.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/showSupplier.jsp" />
+	</definition>
+	
+	<definition name="editSupllier" extends="mainLayout">
+		<put-attribute name="title" value="editSupplier.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/editSupplier.jsp" />
+	</definition> 
+	
+	<definition name="addSupplier" extends="mainLayout">
+		<put-attribute name="title" value="addSupplier.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/addSupplier.jsp" />
+	</definition>
+	
+	<definition name="detailSupplier" extends="mainLayout">
+		<put-attribute name="title" value="detailSupplier.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/detailSupplier.jsp" />
+	</definition>
 </tiles-definitions>

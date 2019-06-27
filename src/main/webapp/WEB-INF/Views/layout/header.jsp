@@ -2,6 +2,9 @@
 <c:url value="/" var="urlIndex" />
 <c:url value="/addUser" var="urlAddUser" />
 <c:url value="/showUser" var="urlShowUser" />
+<c:url value="/showMerchandise" var="urlShowMerchandise" />
+<c:url value="/showMerchandise_type" var="urlShowMerchandise_type" />
+<c:url value="/showSupplier" var="urlShowSupplier" />
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -56,9 +59,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-            <a class="collapse-item" href="showMerchandise">All merchandise</a>
-            <a class="collapse-item" href="showMerchandise_type">All type of merchandise</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
+            <a class="collapse-item" href="${urlShowMerchandise}">All merchandise</a>
+            <a class="collapse-item" href="${urlShowMerchandise_type}">All type of merchandise</a>
+            <a class="collapse-item" href="${urlShowSupplier}">All Supplier</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>

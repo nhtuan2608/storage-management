@@ -3,16 +3,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:url value="/showUser" var="urlShowUser" />
+<c:url value="/showMerchandise" var="urlShowMerchandise" />
 
 <div id="email-error-dialog"></div>
 <div style="margin-left: 20px">
-	<a href="${urlShowUser}"> <span class="fas fa-angle-double-left">
-			<u> List User </u>
+	<a href="${urlShowMerchandise}"> <span
+		class="fas fa-angle-double-left"> <u> List Merchandise </u>
 	</span>
 	</a>
-	<h2>Create new User</h2>
- 	 <%-- <form name="merchandiseAddForm" action="saveMerchandise" method="POST"
+	<h2>Create new Merchandise</h2>
+	<%-- <form name="merchandiseAddForm" action="saveMerchandise" method="POST"
 		modelAttribute="merchandise">
 		<div></div>
 		<table>
@@ -49,47 +49,37 @@
 			</tr>
 		</table>
 	</form> --%>
-	
- 	<div class="panel-body">
-     <form:form action="saveMerchandise"
-      method="post" modelAttribute="merchandise">
 
-<%--       <!-- need to associate this data with customer id -->
-      <form:hidden path="id" /> --%>
-
-      <div class="form-group">
-       <label for="id" class="col-md-3 control-label">ID:</label>
-       <div class="col-md-9">
-        <form:input path="id" />
-       </div>
-      </div>
-      <div class="form-group">
-       <label for="name" class="col-md-3 control-label">Name:</label>
-       <div class="col-md-9">
-        <form:input path="name" />
-       </div>
-      </div>
-
-      <div class="form-group">
-       <label for="merchandise_type_id" class="col-md-3 control-label">Type of Merchandise:</label>
-       <div class="col-md-9">
-				<form:select id="dropBox" path="merchandise_type_id">
-						<form:option id="optionNone" value="" label="--- Select ---" />
-						<form:options items="${typeList}" />
-					</form:select>
-				<%-- <form:errors path="merchandise_type_id" cssStyle="color: red;" /> --%>
-				<div id="errorDropBox" style="color: red;"></div>
-				</div>
-      </div>
-
-      <div class="form-group">
-       <!-- Button -->
-       <div class="col-md-offset-3 col-md-9">
-        <%-- <form:button>Submit</form:button> --%>
-        <input type="submit" name="submit" value="Submit" onclick="return submitDropBox()">
-       </div>
-      </div>
-
-     </form:form>
-    </div>
+	<div class="panel-body">
+		<form:form action="saveMerchandise" method="post"
+			modelAttribute="merchandise">
+			<table>
+				<tr>
+					<td>Merchandise's ID:</td>
+					<td><input name="id" id="id" style="font-size: 15px;" value="${merchandise.id}" /></td>
+				</tr>
+				<tr>
+					<td>Merchandise's name:</td>
+					<td><input type="text" name="name" style="font-size: 15px;" /></td>
+				</tr>
+				<tr>
+					<td>Merchandise's supplier:</td>
+					<td><input type="text" name="name" style="font-size: 15px;" /></td>
+				</tr>
+				<tr>
+					<td>Merchandise's type:</td>
+					<td><form:select id="dropBox" path="merchandise_type_id">
+							<form:option id="optionNone" value="" label="--- Select ---" />
+							<form:options items="${typeList}" />
+						</form:select></td>
+					<td id="errorDropBox" style="color: red; font-size: 13px; padding-left: 30px;"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" name="submit" value="Submit"
+						onclick="return submitDropBox()"></td>
+				</tr>
+			</table>
+		</form:form>
+	</div>
 </div>

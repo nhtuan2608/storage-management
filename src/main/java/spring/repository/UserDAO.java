@@ -95,5 +95,11 @@ public class UserDAO implements GenericDAO<User> {
 		}
 		return false;
 	}
+
+	@Override
+	public User findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

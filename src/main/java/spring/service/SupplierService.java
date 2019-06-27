@@ -48,8 +48,14 @@ public class SupplierService implements GenericService<Supplier>{
 	}
 
 	@Override
-	public boolean findByName(String id) {
-		return false;
+	public boolean findByName(String name) {
+		return supplierDAO.findByName(name);
+	}
+
+	@Override
+	public Supplier findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

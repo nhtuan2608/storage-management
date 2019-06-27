@@ -55,8 +55,18 @@ public class Merchandise_TypeDAO implements  GenericDAO<Merchandise_Type>{
 
 	@Override
 	public boolean findByName(String userName) {
-		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Merchandise_Type type = session.get(Merchandise_Type.class, userName);
+		if(type != null) {
+			return true;
+		}
 		return false;
+	}
+
+	@Override
+	public Merchandise_Type findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

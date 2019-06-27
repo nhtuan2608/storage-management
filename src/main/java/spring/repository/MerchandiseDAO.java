@@ -69,6 +69,12 @@ public class MerchandiseDAO implements GenericDAO<Merchandise>{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Merchandise findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

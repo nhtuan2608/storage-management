@@ -48,9 +48,14 @@ public class Merchandise_TypeService implements GenericService<Merchandise_Type>
 	}
 
 	@Override
-	public boolean findByName(String id) {
+	public boolean findByName(String name) {
+		return merchandise_TypeDAO.findByName(name);
+	}
+
+	@Override
+	public Merchandise_Type findByIntegerId(Integer id) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 	
 }

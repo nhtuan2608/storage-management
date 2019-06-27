@@ -25,11 +25,6 @@ public class MerchandiseService implements GenericService<Merchandise>{
 	@Autowired
 	private GenericDAO<Merchandise> merchandiseDAO;
 	
-	
-//	public MerchandiseService(@Qualifier("merchandises") MerchandiseDAO merchandiseDAO) {
-//		this.merchandiseDAO =  merchandiseDAO;
-//	}
-	
 	@Override
 	public void save(Merchandise entity) {
 		merchandiseDAO.save(entity);
@@ -62,6 +57,11 @@ public class MerchandiseService implements GenericService<Merchandise>{
 	public boolean findByName(String id) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	public Merchandise findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

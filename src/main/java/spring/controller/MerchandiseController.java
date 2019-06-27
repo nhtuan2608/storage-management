@@ -33,18 +33,9 @@ public class MerchandiseController{
 	@Autowired
 	private GenericService<Merchandise_Type> merchandise_TypeService;
 	
-//	@Autowired
-//    @Qualifier("dropBoxValidator")
-//    private Validator validator;
-//	
-//	@InitBinder
-//    private void initBinder(WebDataBinder binder) {
-//        binder.setValidator(validator);
-//    }
-	
 	@GetMapping("/addMerchandise")
 	public String newMerchandise(Model model) {
-		model.addAttribute("merchandise", new Merchandise());
+		contructorModel(model);
 		model.addAttribute("typeList", getList_Type());
 		return "addMerchandise";
 	}
@@ -63,16 +54,25 @@ public class MerchandiseController{
 	}
 
 	@PostMapping("/saveMerchandise")
-	public String saveMerchandise(@ModelAttribute("merchandise") @Valid Merchandise entity, BindingResult result) {
+	public String saveMerchandise(@ModelAttribute("merchandise") @Valid Merchandise entity, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			contructorModel(model);
+			System.out.println("Model: " + model);
 			System.out.println("Error saving: " + result.getAllErrors());
+			return "addMerchandise";
+		}
+		if(merchandiseService.findByName(entity.getName()))
+		{
+			System.out.println("Merchandise " + entity.getName() + " exists.");
+			model.addAttribute("userExisted", entity);
+			contructorModel(model);
+			System.out.println("Model: " + model);
 			return "addMerchandise";
 		}
 		System.out.println("save Merchandise: " + entity);
 		System.out.println("to the save service");
 		merchandiseService.save(entity);
 		return "redirect:/showMerchandise";
-
 	}
 
 	@RequestMapping("/deleteMerchandise/{id}")
@@ -104,5 +104,28 @@ public class MerchandiseController{
 		}
 //		referenceData.put("listTypes", dropBoxData);
 		return dropBoxData;
+	}
+	
+	public Model contructorModel(Model model) {
+		List<Merchandise> listMerchandises = merchandiseService.findAll();
+		int length = listMerchandises.size();
+		int id;
+		if(length == 0 || listMerchandises == null)
+		{
+			id = 1;
+			Merchandise merchandise = new Merchandise();
+			merchandise.setId("MID"+id);
+			model.addAttribute("merchandise", merchandise);
+			System.out.println(model);
+		}
+		else
+		{
+			id = (length + 1);
+			Merchandise merchandise = new Merchandise();
+			merchandise.setId("MID"+id);
+			model.addAttribute("merchandise", merchandise);
+			System.out.println(model);
+		}
+		return model;
 	}
 }

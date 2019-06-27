@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -17,11 +15,11 @@
 		<table>
 			<tr>
 			
-				<td>User ID:</td>
+				<td>User's ID:</td>
 				<td><input id="id" name="id" style="font-size: 15px;" type="text" value="${user.id}" readonly="true" /></td>
 			</tr>
 			<tr>
-				<td>User Name:</td>
+				<td>User's name:</td>
 				<td><input id="userName" type="text" name="userName" style="font-size: 15px;" autofocus="true" placeholder="Username"/></td>
 			</tr>
 			<tr>
@@ -30,7 +28,6 @@
 			</tr>
 			<tr>
 				<td>User's role:</td>
-				<!-- <td><input type="text" name="role" placeholder="Role"/></td> -->
 				<td><select name="role" id="role" >
 					<option id="optionNone" value="" label="--- Select ---"></option>
 					<option value="User">User</option>
@@ -42,10 +39,6 @@
 				<td></td>
 				<td colspan="1"><input type="submit" value="Create User" name="btnSubmit" /></td>
 			</tr>
-			 <%-- <tr>
-				<td></td>
-				<td><input id="hid" name="hid" style="font-size: 15px;" value="${user.numberOfObject }"  />	</td>
-			</tr>  --%>
 		</table>
 	</form>
 	<c:if test="${not empty userExisted}">
@@ -56,16 +49,6 @@
 		</script>
 	</c:if>
 </div>
-<!-- <script type="text/javascript">
-	var id = document.getElementById("hid").value;
-/* 	var name = document.getElementById("userName").value;
-	console.log(typeof(id))
-	console.log(typeof(name) + ": " +name) */
-	document.getElementById("uid").value = "UID"+id;
-	/* id = Number(id);*/
-	document.getElementById("hid").style.display = "none";
-	
-</script> -->
 <%
 	String message = "Users = " + pageContext.findAttribute("user");
 	logger.info(message);
