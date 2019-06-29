@@ -95,11 +95,20 @@ public class UserDAO implements GenericDAO<User> {
 		}
 		return false;
 	}
-
+	
+	@Override
+	public User returnUserFindByName(String userName) {
+		Session session = sessionFactory.getCurrentSession();
+		User user = session.get(User.class, userName);
+		return user;
+	}
+	
 	@Override
 	public User findByIntegerId(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	
 }

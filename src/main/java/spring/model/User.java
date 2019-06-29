@@ -1,9 +1,15 @@
 package spring.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.security.core.GrantedAuthority;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor()
 public class User {
+	
 	@Id
 	private String id;
 	
@@ -35,8 +42,15 @@ public class User {
 	
 	private String role;
 	
-	private int numberOfObject;
+//	private GrantedAuthority authority;
 	
+	private int numberOfObject;
+
+//	public User(String userName, String password, GrantedAuthority authority) {
+//		this.userName = userName;
+//		this.password = password;
+//		this.authority = authority;
+//	}
 	
 	
 }

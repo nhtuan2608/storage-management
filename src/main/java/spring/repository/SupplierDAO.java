@@ -71,5 +71,11 @@ public class SupplierDAO implements GenericDAO<Supplier>{
 		return null;
 	}
 
+	@Override
+	public Supplier returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

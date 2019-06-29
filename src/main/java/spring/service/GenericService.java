@@ -16,6 +16,7 @@ public interface GenericService<E> {
 	List<E> findAll();
 	E findById(String id);
 	E findByIntegerId(Integer id);
+	E returnUserFindByName(String userName);
 	void delete(String id);
 	void update(E entity);
 	boolean isExist(E entity);

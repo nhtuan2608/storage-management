@@ -63,4 +63,10 @@ public class AddressService implements GenericService<Address>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Address returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -8,38 +8,65 @@
 %>
 <div style="margin-left: 20px">
 	<a href="${urlShowUser}"> <span class="fas fa-angle-double-left"> <u> List User </u> </span> </a>
-	<h2>Create new User</h2>
+	<br />
+	<!-- <h2 style="margin-left: 20px;">User</h2> -->
 	<form autocomplete="off" name="userForm" action="saveUser"
 		method="POST" modelAttribute="user" id="formDemo" >
 <%-- 		<div><c:out value="${user.id}"></c:out></div> --%>
-		<table>
-			<tr>
-			
-				<td>User's ID:</td>
-				<td><input id="id" name="id" style="font-size: 15px;" type="text" value="${user.id}" readonly="true" /></td>
-			</tr>
-			<tr>
-				<td>User's name:</td>
-				<td><input id="userName" type="text" name="userName" style="font-size: 15px;" autofocus="true" placeholder="Username"/></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input autocomplete="on" type="password" name="password" placeholder="Password" style="font-size: 15px;" id="password"/></td>
-			</tr>
-			<tr>
-				<td>User's role:</td>
-				<td><select name="role" id="role" >
-					<option id="optionNone" value="" label="--- Select ---"></option>
-					<option value="User">User</option>
-					<option value="Admin">Admin</option>
-					<option value="SuperAdmin">Super Admin</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td colspan="1"><input type="submit" value="Create User" name="btnSubmit" /></td>
-			</tr>
-		</table>
+
+		<div class="container">
+				  <div class="row">
+				    <div class="col-sm">
+				    	<div><h3>User</h3><hr style="border: 1px solid red;"></div>				    	
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>User's ID:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<input id="id" name="id" style="font-size: 15px; width: 100%;" type="text" value="${user.id}" readonly="true" />
+				    			<label for="id" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>User's name:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<input id="userName" type="text" name="userName" style="font-size: 15px;width: 100%;" autofocus="true" placeholder="Username"/>
+				    			<label for="userName" class="error" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-sm">
+				    			<label>Password:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<input autocomplete="on" type="password" name="password" placeholder="Password" style="font-size: 15px;width: 100%;" id="password"/>
+				    			<label for="password" class="error" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-sm">
+				    			<label>User's role:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<select name="role" id="role" >
+									<option id="optionNone" value="" label="--- Select ---"></option>
+									<option value="User">User</option>
+									<option value="Admin">Admin</option>
+									<option value="SuperAdmin">Super Admin</option>
+								</select>
+								<label for="role" class="error" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col"></div>
+				    		<div class="col-6"><input type="submit" class="btn btn-primary" value="Add User" name="btnSubmit" /></div>
+				    	</div> 
+				    </div>
+				     <div class="col-sm"></div>
+				  </div>
+		</div>
 	</form>
 	<c:if test="${not empty userExisted}">
 		<%-- <c:out value="${userExisted}"></c:out> --%>

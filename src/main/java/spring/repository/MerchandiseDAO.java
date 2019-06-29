@@ -75,6 +75,12 @@ public class MerchandiseDAO implements GenericDAO<Merchandise>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Merchandise returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

@@ -63,12 +63,17 @@ label.error{
 }
 
 select#role {
-	width: 180px;
+	width: 100%;
 	height: 28.4px;
 	text-align: center;
 }
 select#dropBox {
-	width: 180px;
+	width: 100%;
+	height: 28.4px;
+	text-align: center;
+}
+select#dropBox1 {
+	width: 100%;
 	height: 28.4px;
 	text-align: center;
 }
@@ -112,14 +117,45 @@ select#dropBox {
 	function submitDropBox()
 	{
 		var x = document.getElementById("dropBox").value;
-		console.log(x)
+		var y = document.getElementById("dropBox1").value;
 		if(x === "")
+		{
+			document.getElementById("errorDropBox").innerHTML = "This field is required.";
+			
+			if(y === "")
+			{
+				document.getElementById("errorDropBox1").innerHTML = "This field is required.";
+				return false;
+			}
+			
+		}
+		else if(x !== "" && y !== "")
+		{
+			document.getElementById("errorDropBox").innerHTML = "";
+			document.getElementById("errorDropBox1").innerHTML = "";
+			return true;
+		}
+		else if(x !== "" && y === "")
+		{
+			document.getElementById("errorDropBox").innerHTML = "";
+			document.getElementById("errorDropBox1").innerHTML = "This field is required.";
+			return false
+		}
+		
+	}
+	
+	/* function submitDropBox_addMerchandise()
+	{
+		var x = document.getElementById("dropBox").value;
+		var y = document.getElementById("dropBox1").value;
+		console.log(x + ", " + y)
+		if(x === "" && y === "" || x !== "" && y === "" || x === "" && y !== "")
 		{
 			document.getElementById("errorDropBox").innerHTML = "This field is required.";
 			return false;
 		}
 		return true;
-	}
+	} */
 	</script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script type="text/javascript">
@@ -148,6 +184,20 @@ select#dropBox {
             }
         });
         
+        $("#formAddSupplier").validate({
+            rules: {
+                name: {
+                	required: true,
+                	minlength: 4,
+                	maxlength: 20
+                },
+                id: "required",
+                phoneNumber: "required",
+                email: "required"
+            },
+            messages: {
+            }
+        });
         $("#form_merchandise_type").validate({
             rules: {
                 name: {
@@ -160,9 +210,25 @@ select#dropBox {
             messages: {
             }
         });
-        $("a").click(function(){
+        
+        $("#formAddMerchandise").validate({
+            rules: {
+                name: {
+                	required: true,
+                	minlength: 4,
+                	maxlength: 20,
+                	
+                },
+                id: "required",
+                dropBox: "required",
+                dropBox1: "required"
+            },
+            messages: {
+            }
+        });
+        /* $("a").click(function(){
             $("footer").addClass("sticky-footer bg-white fixed-bottom");
-          });
+          }); */
     });
     </script>
 </body>

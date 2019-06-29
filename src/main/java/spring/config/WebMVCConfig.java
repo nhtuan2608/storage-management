@@ -2,6 +2,8 @@ package spring.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
@@ -64,14 +66,14 @@ public class WebMVCConfig implements WebMvcConfigurer {
 		return new dropBoxValidator();
 	}
 	
-//   @Bean
-//   public InternalResourceViewResolver resolver() {
-//      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//      resolver.setViewClass(JstlView.class);
-//      resolver.setPrefix("/WEB-INF/Views/");
-//      resolver.setSuffix(".jsp");
-//      return resolver;
-//   }
+   @Bean
+   public InternalResourceViewResolver resolver() {
+      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+      resolver.setViewClass(JstlView.class);
+      resolver.setPrefix("/WEB-INF/Views/");
+      resolver.setSuffix(".jsp");
+      return resolver;
+   }
  
    @Bean
    public MessageSource messageSource() {
@@ -134,4 +136,5 @@ public class WebMVCConfig implements WebMvcConfigurer {
        builder.indentOutput(true);
        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
    } 
+   
 }

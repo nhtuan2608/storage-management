@@ -20,5 +20,6 @@ public interface GenericDAO<E> {
 	void update(E entity);
 	boolean isExist(E entity);
 	boolean findByName(String userName);
+	E returnUserFindByName(String userName);
 	
 }

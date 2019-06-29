@@ -101,5 +101,11 @@ public class AddressDAO implements GenericDAO<Address> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Address returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

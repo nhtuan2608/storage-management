@@ -57,10 +57,17 @@ public class UserService implements GenericService<User>{
 	public boolean findByName(String userName) {
 		return userDAO.findByName(userName);
 	}
-
+	
+	@Override
+	public User returnUserFindByName(String userName) {
+		return userDAO.returnUserFindByName(userName);
+	}
+	
 	@Override
 	public User findByIntegerId(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 }

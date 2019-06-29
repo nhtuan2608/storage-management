@@ -72,7 +72,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Stuff
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->

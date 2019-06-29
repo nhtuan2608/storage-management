@@ -10,12 +10,19 @@
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //
+//import spring.model.User;
+//import spring.service.GenericService;
+//import spring.service.MyDBAuthenticationService;
+//
 //@Configuration
 //@EnableWebSecurity
 //public class WebMVCSecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //	@Autowired
 //    PasswordEncoder passwordEncoder;
+//	
+//	@Autowired
+//	MyDBAuthenticationService myDBAauthenticationService;
 //	
 //	@Autowired
 //	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -26,7 +33,7 @@
 //		auth.inMemoryAuthentication().withUser("superadmin").password("12345").roles("ADMIN");
 //		auth.inMemoryAuthentication().withUser("user").password("12345").roles("USER","ADMIN");
 //		// Các User trong Database
-////		auth.userDetailsService(myDBAauthenticationService);
+//		auth.userDetailsService(myDBAauthenticationService);
 //
 //	}
 //
@@ -47,11 +54,11 @@
 //		
 //		// Trang /userInfo yêu cầu phải login với vai trò USER hoặc ADMIN.
 //		// Nếu chưa login, nó sẽ redirect tới trang /login.
-//		//http.authorizeRequests().antMatchers("/showUser").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+//		http.authorizeRequests().antMatchers("/showUser").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 //
 //		// For ADMIN only.
 //		// Trang chỉ dành cho ADMIN
-////		http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+//		http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
 //
 //		// Khi người dùng đã login, với vai trò XX.
 //		// Nhưng truy cập vào trang yêu cầu vai trò YY,
@@ -64,7 +71,7 @@
 //				// Submit URL của trang login
 //				.loginProcessingUrl("/j_spring_security_check") // Submit URL
 //				.loginPage("/login")//
-//				.defaultSuccessUrl("/userInfo")//
+//				.defaultSuccessUrl("/index")//
 //				.failureUrl("/login?error=true")//
 //				.usernameParameter("username")//
 //				.passwordParameter("password")

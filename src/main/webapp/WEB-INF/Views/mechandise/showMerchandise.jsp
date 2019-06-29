@@ -46,8 +46,10 @@
 							<th class="td_Id">No.</th>
 							<th class="td_Id">ID</th>
 							<th>Merchandise Name</th>
-							<th>Password</th>
-							<th>Role</th>
+							<td>Supplier</td>
+							<td>Type</td>
+							<td>Amount</td>
+							<td>Unit</td>
 							<td style="border-right: none;"></td>
 							<td style="border-right: none;border-left: none;">Action</td>
 							<td style="border-left:  none;"></td>
@@ -58,8 +60,10 @@
 							<td class="td_Id">No.</td>
 							<td class="td_Id">ID</td>
 							<td>Merchandise Name</td>
-							<td>Password</td>
-							<td>Role</td>
+							<td>Supplier</td>
+							<td>Type</td>
+							<td>Amount</td>
+							<td>Unit</td>
 							<td style="border-right: none;"></td>
 							<td style="border-right: none;border-left: none;">Action</td>
 							<td style="border-left:  none;"></td>
@@ -73,7 +77,9 @@
 									<td class="td_Id">${Merchandise.id}</td>
 									<td>${Merchandise.name}</td>
 									<td>${Merchandise.supplier_id}</td>
+									<td>${Merchandise.merchandise_type_id}</td>
 									<td>${Merchandise.amount}</td>
+									<td>${Merchandise.unit}</td>
 									<td class="actionCol"><a href="${urlView}/${Merchandise.id}"><img
 											src="${path}/img/icon/Search.png" height="20" width="20" />View</a></td>
 									<td class="actionCol"><a href="${urlUpdate}/${Merchandise.id}"><img

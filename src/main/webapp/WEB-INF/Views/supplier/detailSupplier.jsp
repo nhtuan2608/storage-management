@@ -6,84 +6,103 @@
 <%
 	Logger logger = Logger.getLogger(this.getClass().getName());
 %>
-<div style="margin-left: 20px">
+<div class="container">
 	<a href="${urlShowSupplier}"> <span
 		class="fas fa-angle-double-left"> <u> List Supplier </u>
 	</span>
 	</a>
 	<div>
-	<h2 style="text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,0 0 0.2em #82F;">Supplier ${supplier.name}</h2>
+	<%-- <h2 style="text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,0 0 0.2em #82F;">Supplier ${supplier.name}</h2> --%>
 
 	<form modelAttribute="supplier,address" id="formDemo">
-		<div class="container"
-			style="text-indent: 0px; letter-spacing: 1px; line-height: 200%;">
-			<!-- 			<div class="row">
-				<div class="col-sm" > -->
-			<table>
-				<tr>
-					<td><h3>
-							<strong>Supplier</strong>
-						</h3></td>
-					<td><hr style="border: 1px solid red;"></td>
-
-
-					<tr><tr><td>Supplier
-				's ID:</td>
-					<td id="strongDetailSupplier"><strong>${supplier.id}</strong></td>
-				</tr>
-				
-				<tr>
-							<td>Supplier's name:</td>
-							<td id="strongDetailSupplier"><strong>${supplier.name}</strong></td>
-						</tr>
-						<tr>
-							<td>Phone number:</td>
-							<td id="strongDetailSupplier"><strong>${supplier.phoneNumber}</strong></td>
-						</tr>
-						<tr>
-							<td>Email:</td>
-							<td id="strongDetailSupplier"><strong>${supplier.email}</strong></td>
-						</tr>
-						<tr>
-					<td><br /></td>
-				</tr>
-						<tr>
-					<td><br /></td>
-				</tr>
-						
-					</table>
-					<table>
-						<tr>
-							<td><h3>
-							<strong></>Address</strong>
-						</h3></td>
-							<td><hr style="border: 1px solid red;"></td>
-						</tr>
-						<tr>
-							<td>Street:</td>
-							<td id="strongDetailSupplier"><strong>${address.street}</strong></td>
-						</tr>
-						<tr>
-							<td>Ward:</td>
-							<td id="strongDetailSupplier"><strong>${address.ward}</strong></td>
-						</tr>
-						<tr>
-							<td>District:</td>
-							<td id="strongDetailSupplier"><strong>${address.district}</strong></td>
-						</tr>
-						<tr>
-							<td>City:</td>
-							<td id="strongDetailSupplier"><strong>${address.city}</strong></td>
-						</tr>
-						<tr>
-							<td>Country:</td>
-							<td id="strongDetailSupplier"><strong>${address.country}</strong></td>
-						</tr>
-						<tr>
-							<td>Postal Code:</td>
-							<td id="strongDetailSupplier"><strong>${address.postalCode}</strong></td>
-						</tr>
-					</table>
+		<div class="container">
+				  <div class="row">
+				    <div class="col-sm">
+				    	<div><h3>Supplier</h3><hr style="border: 1px solid red;"></div>				    	
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>ID:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${supplier.id}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Name:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${supplier.name}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Phone:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${supplier.phoneNumber}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Email:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${supplier.email}</strong></label>
+				    		</div>
+				    	</div>
+					</div>
+					<div class="col-sm">
+				    	<div><h3>Address</h3><hr style="border: 1px solid red;"></div>				    	
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Street:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${address.street}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Ward:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${address.ward}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>District:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${address.district}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>City:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${address.city}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Country:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${address.country}</strong></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Postal Code:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<label ><strong>${address.postalCode}</strong></label>
+				    		</div>
+				    	</div>
+				    </div>
 				 </div>
 			</div>
 </div>

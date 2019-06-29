@@ -58,4 +58,10 @@ public class SupplierService implements GenericService<Supplier>{
 		return null;
 	}
 
+	@Override
+	public Supplier returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

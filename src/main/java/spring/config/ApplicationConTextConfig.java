@@ -17,6 +17,7 @@ public class ApplicationConTextConfig extends AbstractAnnotationConfigDispatcher
 	   protected String[] getServletMappings() {
 	      return new String[] { "/" };
 	   }
+	   
 	}
 
 

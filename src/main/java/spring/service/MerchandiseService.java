@@ -63,5 +63,10 @@ public class MerchandiseService implements GenericService<Merchandise>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public Merchandise returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

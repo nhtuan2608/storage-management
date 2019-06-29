@@ -73,7 +73,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/supplier/showSupplier.jsp" />
 	</definition>
 	
-	<definition name="editSupllier" extends="mainLayout">
+	<definition name="editSupplier" extends="mainLayout">
 		<put-attribute name="title" value="editSupplier.title" /> 
 		<put-attribute name="body" value="/WEB-INF/Views/supplier/editSupplier.jsp" />
 	</definition> 

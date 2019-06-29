@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import = "java.util.logging.Logger" %>
+  <% Logger logger = Logger.getLogger(this.getClass().getName());%>
 <c:url value="/showMerchandise" var="urlShowMerchandise" />
 
 <div id="email-error-dialog"></div>
@@ -11,75 +11,78 @@
 		class="fas fa-angle-double-left"> <u> List Merchandise </u>
 	</span>
 	</a>
-	<h2>Create new Merchandise</h2>
-	<%-- <form name="merchandiseAddForm" action="saveMerchandise" method="POST"
-		modelAttribute="merchandise">
-		<div></div>
-		<table>
-
-			<tr>
-				<td>Merchandise ID:</td>
-				<td><input name="id" data-validation="required"
-					data-validation-error-msg="You did not enter a valid e-mail"
-					data-validation-error-msg-container="#email-error-dialog"
-					style="font-size: 15px;" /></td>
-			</tr>
-			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="name" style="font-size: 15px;" /></td>
-			</tr>
-			<tr>
-				<td>Type of Merchandise:</td>
-				<td><form:select path="typeList">
-						<form:option value="NONE" label="--- Select ---" />
-						<form:options items="${typeList}" />
-					</form:select>
-					<select>
-						<optgroup label=""  ></optgroup>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Amount:</td>
-				<td><input type="text" name="amount" /></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="Create User" name="btnSubmit" /></td>
-			</tr>
-		</table>
-	</form> --%>
+	<br/>
+	<!-- <h2 style="margin-left: 20px;">Add Merchandise</h2> -->
 
 	<div class="panel-body">
 		<form:form action="saveMerchandise" method="post"
-			modelAttribute="merchandise">
-			<table>
-				<tr>
-					<td>Merchandise's ID:</td>
-					<td><input name="id" id="id" style="font-size: 15px;" value="${merchandise.id}" /></td>
-				</tr>
-				<tr>
-					<td>Merchandise's name:</td>
-					<td><input type="text" name="name" style="font-size: 15px;" /></td>
-				</tr>
-				<tr>
-					<td>Merchandise's supplier:</td>
-					<td><input type="text" name="name" style="font-size: 15px;" /></td>
-				</tr>
-				<tr>
-					<td>Merchandise's type:</td>
-					<td><form:select id="dropBox" path="merchandise_type_id">
-							<form:option id="optionNone" value="" label="--- Select ---" />
-							<form:options items="${typeList}" />
-						</form:select></td>
-					<td id="errorDropBox" style="color: red; font-size: 13px; padding-left: 30px;"></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" name="submit" value="Submit"
-						onclick="return submitDropBox()"></td>
-				</tr>
-			</table>
+			modelAttribute="merchandise" id="formAddMerchandise">
+			<div class="container">
+				  <div class="row">
+				    <div class="col-sm">
+				    	<div><h2>Add Merchandise</h2><hr style="border: 1px solid red;"></div>				    	
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>ID:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<input name="id" id="id" style="font-size: 15px; width: 100%;" value="${merchandise.id}" />
+				    			<label for="id" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    		<!-- <div class="col"></div> -->
+				    	</div>			    	
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Name:</label>
+				    		</div>
+				    		<div class="col-6">
+				    			<input type="text" name="name" id="name" style="font-size: 15px; width: 100%;" />
+				    			<label for="name" class="error" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    		<!-- <div class="col"></div> -->
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Supplier:</label>
+				    		</div>
+				    		<div class="col-6">
+									<form:select id="dropBox" path="supplier_id">
+										<form:option id="optionNone" value="" label="--- Select ---" />
+										<form:options items="${supplierList}" />
+									</form:select>
+									<label id="errorDropBox" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    		<!-- <div class="col"></div> -->
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Type:</label>
+				    		</div>
+				    		<div class="col-6">
+					    			<form:select id="dropBox1" path="merchandise_type_id">
+										<form:option id="optionNone" value="" label="--- Select ---" />
+										<form:options items="${typeList}" />
+									</form:select>
+									<label id="errorDropBox1" style="font-size: 13px; color: red;"></label>
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    		</div>
+				    		<div class="col-6"><!--  onclick="return submitDropBox_addMerchandise() -->
+				    			<input type="submit" class="btn btn-primary" name="submit" value="Submit" onclick="return submitDropBox()">
+				    		</div>
+				    		<!-- <div class="col">
+				    		</div> -->
+				    	</div>
+				   	</div>
+				   	<div class="col-sm"></div>
+				  </div>
+			</div>
 		</form:form>
 	</div>
 </div>
+ <% String message = "TypeList = " + pageContext.findAttribute("typeList") +"supplierList[0] = "
+        + pageContext.findAttribute("tets[0]");
+        logger.info(message); 
+%>
