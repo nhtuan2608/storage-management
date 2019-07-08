@@ -50,8 +50,8 @@
 							<th>Phone number</th>
 							<th>Address</th>
 							<td style="border-right: none;"></td>
-							<td style="border-right: none;border-left: none;">Action</td>
-							<td style="border-left:  none;"></td>
+							<td style="border-right: none;border-left: none; width: 42px">Edit</td>
+							<td style="border-left: none;width: 42px">Delete</td>
 						</tr>
 					</thead>
 					<tfoot class="titleTable">
@@ -62,8 +62,8 @@
 							<td>Phone number</td>
 							<td>Address</td>
 							<td style="border-right: none;"></td>
-							<td style="border-right: none;border-left: none;">Action</td>
-							<td style="border-left:  none;"></td>
+							<td style="border-right: none;border-left: none; width: 42px">Edit</td>
+							<td style="border-left: none;width: 42px">Delete</td>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -77,10 +77,8 @@
 									<td>View to see</td>
 									<td class="actionCol"><a href="${urlView}/${supplier.id}"><img
 											src="${path}/img/icon/Search.png" height="20" width="20" />View</a></td>
-									<td class="actionCol"><a href="${urlUpdate}/${supplier.id}"><img
-											src="${path}/img/icon/Edit.png" height="20" width="20" />Edit</a></td>
-									<td class="actionCol"><a href="${urlDelete}/${supplier.id}"><img
-											src="${path}/img/icon/Remove.png" height="20" width="20" />Delete</a></td>
+									<td class="actionCol"><a href="${urlUpdate}/${supplier.id}"><span class="fas fa-pencil-alt"></span></a></td>
+									<td class="actionCol"><a href="${urlDelete}/${supplier.id}"><span class="fas fa-trash-alt"></span></a></td>
 								</tr>
 							</c:forEach>
 						</c:if>

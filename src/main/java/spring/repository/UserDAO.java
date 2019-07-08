@@ -2,9 +2,13 @@ package spring.repository;
 
 import java.util.List;
 import java.util.logging.Logger;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import spring.model.User;
 
@@ -18,7 +22,9 @@ import spring.model.User;
 * @since   2019-06-11 
 */
 //@Qualifier("users")
-@Repository()
+@Repository
+//@Component
+//@Transactional
 public class UserDAO implements GenericDAO<User> {
 
 	@Autowired
@@ -30,9 +36,11 @@ public class UserDAO implements GenericDAO<User> {
 		Session session = sessionFactory.getCurrentSession();
 		String msg = "Saved User: " + user;
 		logger.info(msg);
+		user.setEnabled(true);
 		session.saveOrUpdate(user);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
 //		@SuppressWarnings("unchecked")
@@ -41,6 +49,7 @@ public class UserDAO implements GenericDAO<User> {
 //		
 		Session session = sessionFactory.getCurrentSession();
 		List<User> users = session.createQuery("FROM User", User.class).getResultList();
+//		List<User> users = session.createQuery("FROM User").getResultList();
 		if(users.size() > 0)
 		{
 			String msg = "Found "+ users.size();
@@ -87,7 +96,7 @@ public class UserDAO implements GenericDAO<User> {
 	}
 
 	@Override
-	public boolean findByName(String userName) {
+	public boolean isExist(String userName) {
 		Session session = sessionFactory.getCurrentSession();
 		User user = session.get(User.class, userName);
 		if(user != null) {
@@ -97,7 +106,7 @@ public class UserDAO implements GenericDAO<User> {
 	}
 	
 	@Override
-	public User returnUserFindByName(String userName) {
+	public User findByName(String userName) {
 		Session session = sessionFactory.getCurrentSession();
 		User user = session.get(User.class, userName);
 		return user;
@@ -105,6 +114,12 @@ public class UserDAO implements GenericDAO<User> {
 	
 	@Override
 	public User findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getListById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

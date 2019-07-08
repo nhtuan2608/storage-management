@@ -49,7 +49,7 @@ public class SupplierService implements GenericService<Supplier>{
 
 	@Override
 	public boolean findByName(String name) {
-		return supplierDAO.findByName(name);
+		return supplierDAO.isExist(name);
 	}
 
 	@Override
@@ -60,6 +60,12 @@ public class SupplierService implements GenericService<Supplier>{
 
 	@Override
 	public Supplier returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Supplier> getListByAttribute(String t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

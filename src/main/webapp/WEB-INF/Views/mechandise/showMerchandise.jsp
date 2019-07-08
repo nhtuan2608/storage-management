@@ -50,9 +50,9 @@
 							<td>Type</td>
 							<td>Amount</td>
 							<td>Unit</td>
-							<td style="border-right: none;"></td>
-							<td style="border-right: none;border-left: none;">Action</td>
-							<td style="border-left:  none;"></td>
+							<!-- <td style="border-right: none;"></td> -->
+							<td style="border-right: none;border-left: none; width: 42px">Edit</td>
+							<td style="border-left: none;width: 42px">Delete</td>
 						</tr>
 					</thead>
 					<tfoot class="titleTable">
@@ -64,9 +64,9 @@
 							<td>Type</td>
 							<td>Amount</td>
 							<td>Unit</td>
-							<td style="border-right: none;"></td>
-							<td style="border-right: none;border-left: none;">Action</td>
-							<td style="border-left:  none;"></td>
+							<!-- <td style="border-right: none;"></td> -->
+							<td style="border-right: none;border-left: none; width: 42px">Edit</td>
+							<td style="border-left: none;width: 42px">Delete</td>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -80,12 +80,10 @@
 									<td>${Merchandise.merchandise_type_id}</td>
 									<td>${Merchandise.amount}</td>
 									<td>${Merchandise.unit}</td>
-									<td class="actionCol"><a href="${urlView}/${Merchandise.id}"><img
-											src="${path}/img/icon/Search.png" height="20" width="20" />View</a></td>
-									<td class="actionCol"><a href="${urlUpdate}/${Merchandise.id}"><img
-											src="${path}/img/icon/Edit.png" height="20" width="20" />Edit</a></td>
-									<td class="actionCol"><a href="${urlDelete}/${Merchandise.id}"><img
-											src="${path}/img/icon/Remove.png" height="20" width="20" />Delete</a></td>
+									<%-- <td class="actionCol"><a href="${urlView}/${Merchandise.id}"><img
+											src="${path}/img/icon/Search.png" height="20" width="20" />View</a></td> --%>
+									<td class="actionCol"><a href="${urlUpdate}/${Merchandise.id}"><span class="fas fa-pencil-alt"></span></a></td>
+									<td class="actionCol"><a href="${urlDelete}/${Merchandise.id}"><span class="fas fa-trash-alt"></span></a></td>
 								</tr>
 							</c:forEach>
 						</c:if>

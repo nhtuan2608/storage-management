@@ -59,7 +59,7 @@
 				    			<label>Type:</label>
 				    		</div>
 				    		<div class="col-6">
-					    			<form:select id="dropBox1" path="merchandise_type_id">
+					    			<form:select id="dropBox1" path="merchandise_type_id" >
 										<form:option id="optionNone" value="" label="--- Select ---" />
 										<form:options items="${typeList}" />
 									</form:select>

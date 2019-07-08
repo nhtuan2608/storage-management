@@ -56,7 +56,7 @@ public class SupplierDAO implements GenericDAO<Supplier>{
 	}
 
 	@Override
-	public boolean findByName(String userName) {
+	public boolean isExist(String userName) {
 		Session session = sessionFactory.getCurrentSession();
 		Supplier supplier = session.get(Supplier.class, userName);
 		if(supplier != null) {
@@ -72,7 +72,13 @@ public class SupplierDAO implements GenericDAO<Supplier>{
 	}
 
 	@Override
-	public Supplier returnUserFindByName(String userName) {
+	public Supplier findByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Supplier> getListById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

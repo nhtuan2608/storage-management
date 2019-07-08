@@ -87,7 +87,7 @@ public class AddressDAO implements GenericDAO<Address> {
 	}
 
 	@Override
-	public boolean findByName(String addressName) {
+	public boolean isExist(String addressName) {
 		Session session = sessionFactory.getCurrentSession();
 		Address address = session.get(Address.class, addressName);
 		if(address != null) {
@@ -103,7 +103,13 @@ public class AddressDAO implements GenericDAO<Address> {
 	}
 
 	@Override
-	public Address returnUserFindByName(String userName) {
+	public Address findByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Address> getListById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

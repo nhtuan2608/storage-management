@@ -2,28 +2,27 @@ package spring.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.CacheControl;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -34,7 +33,8 @@ import spring.validator.dropBoxValidator;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "spring")
+@EnableTransactionManagement
+@ComponentScan(basePackages = "spring.*")
 public class WebMVCConfig implements WebMvcConfigurer {
 	
 	@Bean(name = "viewResolver")
@@ -66,7 +66,15 @@ public class WebMVCConfig implements WebMvcConfigurer {
 		return new dropBoxValidator();
 	}
 	
-   @Bean
+	@Bean
+	public WebContentInterceptor webContentInterceptor() {
+		WebContentInterceptor interceptor = new WebContentInterceptor();
+		interceptor.setRequireSession(true);
+		interceptor.setUseCacheControlNoStore(true);
+		return interceptor;
+	}
+	
+	@Bean
    public InternalResourceViewResolver resolver() {
       InternalResourceViewResolver resolver = new InternalResourceViewResolver();
       resolver.setViewClass(JstlView.class);
@@ -101,9 +109,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
 	   registry
 	   	.addResourceHandler("/css/**")
 	   	.addResourceLocations("classpath:/statics/css/")
-	      .setCachePeriod(3600)
-	      .resourceChain(true)
-	      .addResolver(new PathResourceResolver());
+	    .setCachePeriod(3600)
+	    .resourceChain(true)
+	    .addResolver(new PathResourceResolver());
 	   registry
 	   	.addResourceHandler("/fonts/**")
 	   	.addResourceLocations("classpath:/statics/fonts/")
@@ -118,7 +126,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
 	      .addResolver(new PathResourceResolver());
 
 	   registry.addResourceHandler("/img/**").addResourceLocations("classpath:/statics/img/")
-       .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
+       .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic()).setCachePeriod(3600)
+	      .resourceChain(true)
+	      .addResolver(new PathResourceResolver());
    }
    
    @Bean
@@ -136,5 +146,4 @@ public class WebMVCConfig implements WebMvcConfigurer {
        builder.indentOutput(true);
        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
    } 
-   
 }

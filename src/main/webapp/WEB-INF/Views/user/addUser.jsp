@@ -2,18 +2,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.logging.Logger"%>
-<c:url value="/showUser" var="urlShowUser" />
 <%
 	Logger logger = Logger.getLogger(this.getClass().getName());
 %>
+<c:url value="/showUser" var="urlShowUser" />
+
 <div style="margin-left: 20px">
 	<a href="${urlShowUser}"> <span class="fas fa-angle-double-left"> <u> List User </u> </span> </a>
 	<br />
 	<!-- <h2 style="margin-left: 20px;">User</h2> -->
 	<form autocomplete="off" name="userForm" action="saveUser"
-		method="POST" modelAttribute="user" id="formDemo" >
-<%-- 		<div><c:out value="${user.id}"></c:out></div> --%>
-
+		method="POST" modelAttribute="user" id="formAddMerchandise" >
 		<div class="container">
 				  <div class="row">
 				    <div class="col-sm">
@@ -50,13 +49,18 @@
 				    			<label>User's role:</label>
 				    		</div>
 				    		<div class="col-6">
-				    			<select name="role" id="role" >
+				    			<!-- <select name="role" id="role" >
 									<option id="optionNone" value="" label="--- Select ---"></option>
 									<option value="User">User</option>
 									<option value="Admin">Admin</option>
 									<option value="SuperAdmin">Super Admin</option>
 								</select>
-								<label for="role" class="error" style="font-size: 13px; color: red;"></label>
+								<label for="role" class="error" style="font-size: 13px; color: red;"></label> -->
+								 <form:select id="dropBox" path="user.role.name" name="name">
+										<%-- <form:option id="optionNone" value="" label="--- Select ---" /> --%>
+										<form:options items="${roles}"  />
+								 </form:select>
+								<label id="errorDropBox" style="font-size: 13px; color: red;"></label>
 				    		</div>
 				    	</div>
 				    	<div class="row">
@@ -68,15 +72,8 @@
 				  </div>
 		</div>
 	</form>
-	<c:if test="${not empty userExisted}">
-		<%-- <c:out value="${userExisted}"></c:out> --%>
-		<script type="text/javascript">
-			document.getElementById("email-error-dialog").innerHTML = "Error";
-			document.getElementById("email-error-dialog").style.color = "red";
-		</script>
-	</c:if>
 </div>
-<%
-	String message = "Users = " + pageContext.findAttribute("user");
+<%-- <%
+	String message = "Users = " + pageContext.findAttribute("user") + "Roles = " + pageContext.findAttribute("role");
 	logger.info(message);
-%>
+%> --%>

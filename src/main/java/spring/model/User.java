@@ -1,14 +1,25 @@
 package spring.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,31 +37,70 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Data
-@AllArgsConstructor()
-public class User {
+@AllArgsConstructor
+@Transactional
+public class User implements UserDetails{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
 	
-	@Size(max = 12, min = 4, message = "{user.password.invalid}")
 	@NotNull(message = "Not null")
 	private String password;
+	
 	
 	@Size(max = 20, min = 4, message = "{user.userName.invalid}")
 	@NotNull(message = "Not null")
 	private String userName;
 	
-	private String role;
+	private boolean enabled;
 	
-//	private GrantedAuthority authority;
+	@ManyToOne(optional = false)
+	@JoinColumn(name ="role_id", nullable = true)
+	private Role role;
 	
 	private int numberOfObject;
 
-//	public User(String userName, String password, GrantedAuthority authority) {
-//		this.userName = userName;
-//		this.password = password;
-//		this.authority = authority;
-//	}
+//	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+//	 private Set<Authorities> authorities = new HashSet<>();
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+    @Override
+    public String getUsername() {
+        return this.userName;
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
+    }
+    @Transient
+    private Collection<? extends GrantedAuthority> grantedAuthorities;
+    
+    @Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.grantedAuthorities;
+	}
 	
-	
+	public void setAuthorities(List<GrantedAuthority> grantedList) {
+		this.grantedAuthorities = grantedList;
+	}
 }

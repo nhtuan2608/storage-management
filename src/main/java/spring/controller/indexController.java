@@ -2,6 +2,7 @@ package spring.controller;
 
 import java.security.Principal;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,22 +14,23 @@ public class indexController {
 //		return "index";
 //	}
 
-	@GetMapping(value = { "/", "/welcome" })
+	@GetMapping("/")
 	public String welcomePage(Model model) {
 		model.addAttribute("title", "Welcome");
-		model.addAttribute("message", "This is welcome page!");
+		String encoded=new BCryptPasswordEncoder().encode("admin");
+		System.out.println(encoded);
+//		model.addAttribute("message", "You are logged in as " + principal.getName());
 		return "index";
 	}
 
 	@GetMapping(value = "/admin")
 	public String adminPage(Model model) {
-		return "adminPage";
+		return "admin";
 	}
 
 	@GetMapping(value = "/login")
 	public String loginPage(Model model) {
-
-		return "loginPage";
+		return "login";
 	}
 
 	@GetMapping(value = "/logoutSuccessful")

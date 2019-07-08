@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import spring.model.Merchandise;
 import spring.model.Merchandise_Type;
 import spring.service.GenericService;
 
@@ -20,6 +21,8 @@ public class Merchandise_TypeController {
 		
 	@Autowired
 	private GenericService<Merchandise_Type> merchandise_typeService;
+	@Autowired
+	private GenericService<Merchandise> merchandiseService;
 	
 	@GetMapping("/addMerchandise_type")
 	public String newMerchandise_Type(Model model) {
@@ -56,8 +59,6 @@ public class Merchandise_TypeController {
 			System.out.println("Model: " + model);
 			return "addMerchandise_type";
 		}
-		System.out.println("save Merchandise: " + entity);
-		System.out.println("to the save service");
 		merchandise_typeService.save(entity);
 		return "redirect:/showMerchandise_type";
 
@@ -65,6 +66,11 @@ public class Merchandise_TypeController {
 
 	@RequestMapping("/deleteMerchandise_type/{id}")
 	public String deleteMerchandise_Type(@PathVariable String id, Model model) {
+		List<Merchandise> list = merchandiseService.getListByAttribute(id);
+		for(Merchandise obj: list)
+		{
+			merchandiseService.delete(obj.getId());
+		}
 		merchandise_typeService.delete(id);
 		return "redirect:/showMerchandise_type";
 	}
@@ -92,7 +98,6 @@ public class Merchandise_TypeController {
 			Merchandise_Type type = new Merchandise_Type();
 			type.setId("MTID"+id);
 			model.addAttribute("merchandise_type", type);
-			System.out.println(model);
 		}
 		else
 		{
@@ -100,7 +105,6 @@ public class Merchandise_TypeController {
 			Merchandise_Type type = new Merchandise_Type();
 			type.setId("MTID"+id);
 			model.addAttribute("merchandise_type", type);
-			System.out.println(model);
 		}
 		return model;
 	}

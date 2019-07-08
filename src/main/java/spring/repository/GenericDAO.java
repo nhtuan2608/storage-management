@@ -2,6 +2,8 @@ package spring.repository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 /**
 * GenericDAO
 * 
@@ -11,6 +13,7 @@ import java.util.List;
 * @version 1.0
 * @since   2019-06-11 
 */
+@Repository
 public interface GenericDAO<E> {
 	void save(E entity);
 	List<E> findAll();
@@ -19,7 +22,8 @@ public interface GenericDAO<E> {
 	void delete(String id);
 	void update(E entity);
 	boolean isExist(E entity);
-	boolean findByName(String userName);
-	E returnUserFindByName(String userName);
+	boolean isExist(String name);
+	E findByName(String name);
+	List<E> getListById(String id);
 	
 }

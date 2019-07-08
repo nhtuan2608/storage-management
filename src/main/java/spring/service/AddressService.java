@@ -55,7 +55,7 @@ public class AddressService implements GenericService<Address>{
 
 	@Override
 	public boolean findByName(String addressName) {
-		return addressDAO.findByName(addressName);
+		return addressDAO.isExist(addressName);
 	}
 
 	@Override
@@ -66,6 +66,12 @@ public class AddressService implements GenericService<Address>{
 
 	@Override
 	public Address returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Address> getListByAttribute(String t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

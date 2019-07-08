@@ -55,16 +55,22 @@ public class UserService implements GenericService<User>{
 
 	@Override
 	public boolean findByName(String userName) {
-		return userDAO.findByName(userName);
+		return userDAO.isExist(userName);
 	}
 	
 	@Override
 	public User returnUserFindByName(String userName) {
-		return userDAO.returnUserFindByName(userName);
+		return userDAO.findByName(userName);
 	}
 	
 	@Override
 	public User findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> getListByAttribute(String t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

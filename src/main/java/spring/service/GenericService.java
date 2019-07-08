@@ -21,4 +21,5 @@ public interface GenericService<E> {
 	void update(E entity);
 	boolean isExist(E entity);
 	boolean findByName(String userName);
+	List<E> getListByAttribute (String t);
 }

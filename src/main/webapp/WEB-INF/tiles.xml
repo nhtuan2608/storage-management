@@ -11,6 +11,16 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/Views/layout/footer.jsp" />
 	</definition>
+	
+	<definition name="login" extends="mainLayout">
+		<put-attribute name="title" value="login.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/login.jsp" />
+	</definition>
+	
+	<definition name="logout" extends="mainLayout">
+		<put-attribute name="title" value="logout.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/logout.jsp" />
+	</definition>
 
 	<!-- Configure for index in template layout -->
 	<definition name="index" extends="mainLayout">
@@ -86,5 +96,20 @@
 	<definition name="detailSupplier" extends="mainLayout">
 		<put-attribute name="title" value="detailSupplier.title" /> 
 		<put-attribute name="body" value="/WEB-INF/Views/supplier/detailSupplier.jsp" />
+	</definition>
+	
+	<definition name="addImport" extends="mainLayout">
+		<put-attribute name="title" value="addImport.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/import/addImport.jsp" />
+	</definition>
+	
+	<definition name="detailNote" extends="mainLayout">
+		<put-attribute name="title" value="detailNote.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/import/detailNote.jsp" />
+	</definition>
+	
+	<definition name="showImportNote" extends="mainLayout">
+		<put-attribute name="title" value="showImportNote.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/import/showAllImportNote.jsp" />
 	</definition>
 </tiles-definitions>

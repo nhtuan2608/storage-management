@@ -68,5 +68,9 @@ public class MerchandiseService implements GenericService<Merchandise>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Merchandise> getListByAttribute(String id) {
+		return merchandiseDAO.getListById(id);	}
 
 }

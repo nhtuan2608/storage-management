@@ -1,10 +1,8 @@
 package spring.model;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +21,5 @@ public class Merchandise_Type {
 	
 	private String media;
 	private int numberOfObject; 
+	
 }

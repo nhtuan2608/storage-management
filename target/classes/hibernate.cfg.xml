@@ -19,9 +19,12 @@
         <property name="hibernate.c3p0.acquire_increment">1800</property>
         <property name="hibernate.c3p0.max_statements">150</property>
         <mapping class="spring.model.User" />
+        <mapping class="spring.model.Role" />
         <mapping class="spring.model.Merchandise" />
         <mapping class="spring.model.Merchandise_Type" />
         <mapping class="spring.model.Supplier" />
         <mapping class="spring.model.Address" />
+        <mapping class="spring.model.Import_Detail_Note" />
+        <mapping class="spring.model.Import_Note" />
     </session-factory>
 </hibernate-configuration>

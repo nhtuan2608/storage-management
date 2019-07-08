@@ -42,8 +42,6 @@ public class MerchandiseController{
 	@GetMapping("/addMerchandise")
 	public String newMerchandise(Model model) {
 		contructorModel(model);
-		model.addAttribute("option_Supplier", optionDropBox_Supplier());
-		model.addAttribute("option_Type", optionDropBox_Type());
 		model.addAttribute("typeList", getList_Type());
 		model.addAttribute("supplierList",getList_Supplier());
 		return "addMerchandise";
@@ -71,9 +69,9 @@ public class MerchandiseController{
 //		System.out.println("result: " + result);
 		if (result.hasErrors()) {
 			contructorModel(model);
-			model.addAttribute("option_Supplier",optionDropBox_Supplier());
-			model.addAttribute("option_Type",optionDropBox_Type());
 			System.out.println("Error saving: " + result.getAllErrors());
+			model.addAttribute("typeList", getList_Type());
+			model.addAttribute("supplierList",getList_Supplier());
 			return "addMerchandise";
 		}
 		if(merchandiseService.findByName(entity.getName()))
@@ -81,8 +79,8 @@ public class MerchandiseController{
 			System.out.println("Merchandise " + entity.getName() + " exists.");
 			model.addAttribute("userExisted", entity);
 			contructorModel(model);
-			model.addAttribute("option_Supplier",optionDropBox_Supplier());
-			model.addAttribute("option_Type",optionDropBox_Type());
+			model.addAttribute("typeList", getList_Type());
+			model.addAttribute("supplierList",getList_Supplier());
 			return "addMerchandise";
 		}
 		System.out.println("save Merchandise: " + entity);
@@ -123,20 +121,6 @@ public class MerchandiseController{
 	}
 	
 	@Autowired
-	public ArrayList<String> optionDropBox_Type() {
-		Map<String,String> list = getList_Type();
-		ArrayList<String> arr = new ArrayList<String>();
-		
-		for (Entry<String, String> map : list.entrySet()) {
-			System.out.println(map.getValue());
-			String string = "<option value='"+map.getValue()+"'> "+map.getValue()+" </option>";
-			arr.add(string);
-		}
-		System.out.println(arr);
-		return arr;
-	}
-	
-	@Autowired
 	public Map<String,String> getList_Supplier(){
 		List<Supplier> list = supplierService.findAll();
 		Map <String,String> dropBoxData = new LinkedHashMap<String,String>();
@@ -147,24 +131,13 @@ public class MerchandiseController{
 		return dropBoxData;
 	}
 	
-	@Autowired
-	public ArrayList<String> optionDropBox_Supplier() {
-		Map<String,String> list = getList_Supplier();
-		ArrayList<String> arr = new ArrayList<String>();
-		
-		for (Entry<String, String> map : list.entrySet()) {
-			System.out.println(map.getValue());
-			String string = "<option value='"+map.getValue()+"'> "+map.getValue()+" </option>";
-			arr.add(string);
-		}
-		System.out.println(arr);
-		return arr;
-	}
-	
 	public Model contructorModel(Model model) {
 		List<Merchandise> listMerchandises = merchandiseService.findAll();
 		int length = listMerchandises.size();
 		int id;
+		List<Merchandise_Type> list = merchandise_TypeService.findAll();
+		model.addAttribute("typeList",getList_Type());
+		model.addAttribute("supplierList",getList_Supplier());
 		if(length == 0 || listMerchandises == null)
 		{
 			id = 1;

@@ -1,7 +1,10 @@
 package spring.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +22,7 @@ import spring.model.Merchandise;
 * @since   2019-06-14 
 */
 //@Qualifier("merchandises")
-@Repository()
+@Repository
 public class MerchandiseDAO implements GenericDAO<Merchandise>{
 
 	@Autowired
@@ -29,7 +32,7 @@ public class MerchandiseDAO implements GenericDAO<Merchandise>{
 	public void save(Merchandise entity) {
 		Session session = sessionFactory.getCurrentSession();
 		Logger logger = Logger.getLogger(this.getClass().getName());
-		String msg = "Update Merchandise: " + entity;
+		String msg = "Merchandise: " + entity;
 		logger.info(msg);
 		session.saveOrUpdate(entity);
 	}
@@ -65,7 +68,7 @@ public class MerchandiseDAO implements GenericDAO<Merchandise>{
 	}
 
 	@Override
-	public boolean findByName(String userName) {
+	public boolean isExist(String userName) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -77,10 +80,15 @@ public class MerchandiseDAO implements GenericDAO<Merchandise>{
 	}
 
 	@Override
-	public Merchandise returnUserFindByName(String userName) {
+	public Merchandise findByName(String userName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	
+	public List<Merchandise> getListById(String id){
+		Session session = sessionFactory.getCurrentSession();
+		List<Merchandise> list = new ArrayList<Merchandise>();
+		list = session.createQuery("FROM Merchandise WHERE merchandise_type_id=:merchandise_type_id",Merchandise.class).setParameter("merchandise_type_id", id).getResultList();
+		return list;
+	}
 }
