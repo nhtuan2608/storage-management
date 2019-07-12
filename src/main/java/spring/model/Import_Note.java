@@ -25,4 +25,6 @@ public class Import_Note {
 	private String date;
 	
 	private String status;
+	
+	private int numberOfObject;
 }

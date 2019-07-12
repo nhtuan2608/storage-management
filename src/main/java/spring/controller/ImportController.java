@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.model.Import_Detail_Note;
 import spring.model.Import_Note;
@@ -40,15 +42,11 @@ public class ImportController {
 		return "addImport";
 	}
 	
-//	@ModelAttribute("user")
-//	public User UserContructor() {
-//		return new User();
-//	}
-//	
-//	@ModelAttribute("detail")
-//	public Import_Detail_Note DetailContructor() {
-//		return new Import_Detail_Note();
-//	}
+	@GetMapping("/showAllImportNote")
+	public String ShowImportNote(Model model) {
+		model.addAttribute("listNote",getList());
+		return "showAllImportNote";
+	}
 	
 	@PostMapping("/saveImportNote")
 	public String saveImportNote(@ModelAttribute("note") @Valid Import_Note note, @ModelAttribute("detail") @Valid Import_Detail_Note detail, BindingResult result, Model model) {
@@ -129,6 +127,19 @@ public class ImportController {
 		return model;
 	}
 	
+	public List<Import_Note> getList() {
+		List<Import_Note> listNotes = import_noteService.findAll();
+		int length = listNotes.size();
+		int count = 1;
+		for (Import_Note obj : listNotes) {
+			if (count <= length) {
+				obj.setNumberOfObject(count);
+				count++;
+			}
+		}
+		return listNotes;
+	}
+	
 	public Model contructorNote(Model model) {
 		List<Import_Note> listNote = import_noteService.findAll();
 		int lengthNote = listNote.size();
@@ -150,5 +161,22 @@ public class ImportController {
 			System.out.println(model);
 		}
 		return model;
+	}
+	
+	@GetMapping("/deleteNote/{id}")
+	public String deleteImportNote(@PathVariable String id, Model model) {
+		List<Import_Detail_Note> detail = import_detailService.getListByAttribute(id);
+		for(Import_Detail_Note obj: detail)
+		{
+			import_detailService.delete(obj.getId());
+		}
+		import_noteService.delete(id);
+		return "redirect:/showAllImportNote";
+	}
+	
+	@RequestMapping("/deleteDetail/{id}")
+	public String deleteDetail(@PathVariable String id, Model model) {
+		import_detailService.delete(id);
+		return "";
 	}
 }

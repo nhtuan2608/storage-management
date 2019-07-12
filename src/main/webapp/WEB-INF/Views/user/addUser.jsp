@@ -57,7 +57,7 @@
 								</select>
 								<label for="role" class="error" style="font-size: 13px; color: red;"></label> -->
 								 <form:select id="dropBox" path="user.role.name" name="name">
-										<%-- <form:option id="optionNone" value="" label="--- Select ---" /> --%>
+										<form:option id="optionNone" value="" label="--- Select ---" />
 										<form:options items="${roles}"  />
 								 </form:select>
 								<label id="errorDropBox" style="font-size: 13px; color: red;"></label>

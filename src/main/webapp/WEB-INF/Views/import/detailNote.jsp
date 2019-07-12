@@ -5,13 +5,13 @@
 <%
 	Logger logger = Logger.getLogger(this.getClass().getName());
 %>
-<c:url value="/showUser" var="urlShowImportNote" />
-
+<c:url value="/showAllImportNote" var="urlShowImportNote" />
+<c:url value="/deleteNote" var="urlDeleteNote" />
 <div style="margin-left: 20px">
 	<a href="${urlShowImportNote}"> <span
 		class="fas fa-angle-double-left"> <u> List Import Note </u>
 	</span>
-	</a> <br /> ${note}, ${detail}
+	</a> <br />
 	<form autocomplete="on" name="noteForm" action="saveNote" method="POST"
 		modelAttribute="note" id="formAddNote">
 
@@ -79,12 +79,12 @@
 						<div class="col">
 							<div class="row">
 								<div class="col">
-									<a href="#" class="btn btn-info fas fa-save"
+									<a href="${showAllImportNote}" class="btn btn-info fas fa-save"
 										style="color: black; width: 100%;" data-toggle="tooltip"
 										title="Save and close this note!">Save</a>
 								</div>
 								<div class="col">
-									<a href="#" class="btn btn-info fas fa-trash"
+									<a href="${urlDeleteNote}/${note.id}" class="btn btn-info fas fa-trash"
 										style="color: black; width: 100%" data-toggle="tooltip"
 										title="Delete this note!">Delete</a>
 								</div>

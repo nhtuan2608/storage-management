@@ -108,7 +108,7 @@
 		<put-attribute name="body" value="/WEB-INF/Views/import/detailNote.jsp" />
 	</definition>
 	
-	<definition name="showImportNote" extends="mainLayout">
+	<definition name="showAllImportNote" extends="mainLayout">
 		<put-attribute name="title" value="showImportNote.title" /> 
 		<put-attribute name="body" value="/WEB-INF/Views/import/showAllImportNote.jsp" />
 	</definition>

@@ -5,10 +5,10 @@
 <%
 	Logger logger = Logger.getLogger(this.getClass().getName());
 %>
-<c:url value="/showUser" var="urlShowUser" />
+<c:url value="/showAllImportNote" var="urlShowNote" />
 
 <div style="margin-left: 20px">
-	<a href="${urlShowUser}"> <span class="fas fa-angle-double-left"> <u> List Import Note </u> </span> </a>
+	<a href="${urlShowNote}"> <span class="fas fa-angle-double-left"> <u> List Import Note </u> </span> </a>
 	<br />
 		<form autocomplete="on" name="noteForm" action="saveImportNote"
 		method="POST" modelAttribute="detail,note" id="formAddNote">
