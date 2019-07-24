@@ -68,17 +68,17 @@ public class UserApi {
 	// -------------------Create a User
 	// ------------------------------------------------------------------------------
 
-	@PostMapping("/addUser/")
+	@PostMapping("/add/")
 	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
 		
 
 		if (userService.isExist(user)) {
-			System.out.println("A User with name " + user.getUsername() + " already exist");
+			System.out.println("A User with name " + user.getUserName() + " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 
 		userService.save(user);
-		System.out.println("Created User " + user.getUsername());
+		System.out.println("Created User " + user.getUserName());
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/add/{id}").buildAndExpand(user.getId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -96,8 +96,9 @@ public class UserApi {
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
 
-		currentUser.setUserName(user.getUsername());
+		currentUser.setUserName(user.getUserName());
 		currentUser.setPassword(user.getPassword());
+		currentUser.setRole(user.getRole());
 
 		userService.update(currentUser);
 		System.out.println("Updated User " + id);
@@ -106,7 +107,7 @@ public class UserApi {
 
 	// --------------------------------- Delete User
 	// ---------------------------------------------------------------------------------
-	@GetMapping("/deleteUser/{id}")
+	@GetMapping("/delete/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable String id) {
 
 		User user = userService.findById(id);

@@ -1,142 +1,75 @@
 package spring.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-import spring.model.Role;
 import spring.model.User;
 import spring.service.GenericService;
 
 @Controller
 public class UserController {
-
-	@Autowired
-	private GenericService<User> userService;
-	@Autowired
-	private GenericService<Role> roleService;
 	
-	@GetMapping("/addUser")
-	public String newUser(Model model) {
-		contructorModel(model);
-		return "addUser";
+	@Autowired
+    private GenericService<User> userService;
+	
+	//call to index.jsp
+	@GetMapping("/")
+	public String showHomePage(ModelMap modelMap) {
+		return "index";
 	}
-
+	
+	@GetMapping("/new")
+	public String newUser(ModelMap modelMap) {
+		return "newUser";
+	}
+	
 	@GetMapping("/showUser")
-	public String showUser(Model model) {
-		model.addAttribute("listUsers", getList());
+	public String showUser(Model model,ModelMap modelMap) {
+		model.addAttribute("listUsers", userService.findAll());
 		return "showUser";
 	}
-
+	
 	@RequestMapping("/editUser/{id}")
 	public String editUser(@PathVariable String id, Model model) {
 		User user = userService.findById(id);
-		model.addAttribute("user", user);
+		model.addAttribute("user",user);
 		return "editUser";
 	}
-
-	@PostMapping("/saveUser")
-	public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
-		System.out.println("user: " + user);
-//		System.out.println("role: " + user.getRole().getName());
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		if (result.hasErrors()) {
-			contructorModel(model);
-			System.out.println("Model: " + model);
-			System.out.println("Error saving: " + result.getAllErrors());
-			return "addUser";
-		}
-		if(userService.findByName(user.getUsername()))
-		{
-			System.out.println("User " + user.getUsername() + " exists.");
-			model.addAttribute("userExisted", user);
-			contructorModel(model);
-			System.out.println("Model: " + model);
-			return "addUser";
-		}
-		System.out.println();
-		user.setRole(roleService.returnUserFindByName(user.getRole().getName()));
-		System.out.println("save User: " + user);
-//		System.out.println("to the save service");
-		userService.save(user);
-		return "redirect:/showUser";
-	}
-
+	
+	@RequestMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") @Valid User entity,
+                            BindingResult result, Model model,ModelMap modelMap) {
+        if (result.hasErrors()) {
+            model.addAttribute("listUsers", userService.findAll());
+            return "newUser";
+        }
+        userService.save(entity);
+        return "redirect:showUser";
+    }
+	
 	@RequestMapping("/deleteUser/{id}")
-	public String deleteUser(@PathVariable String id, Model model) {
+	public String deleteUser(@PathVariable String id, Model model,ModelMap modelMap) {
 		userService.delete(id);
-		return "redirect:/showUser";
-	}
-
-	public List<User> getList() {
-		List<User> listUsers = userService.findAll();
-		int length = listUsers.size();
-		int count = 1;
-		for (User obj : listUsers) {
-			if (count <= length) {
-				obj.setNumberOfObject(count);
-				count++;
-			}
-		}
-		return listUsers;
-	}
-	
-//	public Map<String,String> getList_Supplier(){
-//		List<Role> roles = roleService.findAll();
-//		Map <Integer,String> dropBoxData = new LinkedHashMap<Integer,String>();
-//		for(Supplier obj : list)
-//		{
-//			dropBoxData.put(obj.getId(), obj.getName());
-//		}
-//		return dropBoxData;
-//	}
-	
-	public Model contructorModel(Model model) {
-		List<User> listUsers = userService.findAll();
-		List<Role> roles = roleService.findAll();
-//		LinkedHashMap<Integer, String> listRoles = new LinkedHashMap<Integer, String>();
-//		for(Role role: roles) {
-//			listRoles.put(Integer.valueOf(role.getId()), role.getName());
-//		}
-//		System.out.println(listRoles);
-		List<String> roleNames = new ArrayList<>();
-		for(Role role: roles) {
-			roleNames.add(role.getName());
-		}
-		int length = listUsers.size();
-		int id;
-		if(length == 0 || listUsers == null)
-		{
-			id = 1;
-			User user = new User();
-//			Role role = new Role(1, "user");
-//			user.setRole(role);
-			user.setId("UID"+id);
-			model.addAttribute("user", user);
-			model.addAttribute("roles",roleNames);
-			System.out.println(model);
-		}
-		else
-		{
-			id = (length + 1);
-			User user = new User();
-			user.setId("UID"+id);
-			model.addAttribute("user", user);
-			model.addAttribute("roles",roleNames);
-			System.out.println(model);
-		}
-		return model;
+		model.addAttribute("listUsers", userService.findAll());
+		return "showUser";
 	}
 }

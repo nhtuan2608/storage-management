@@ -1,0 +1,16 @@
+spring\model\Address.class
+spring\service\GenericService.class
+spring\repository\Material_TypeDAOImpl.class
+spring\repository\GenericDAO.class
+spring\repository\SupplierDAOImpl.class
+spring\model\User.class
+spring\model\Material_Type.class
+spring\repository\UserDAOImpl.class
+spring\service\MaterialServiceImpl.class
+spring\service\UserServiceImpl.class
+spring\repository\MaterialDAOImpl.class
+spring\service\SupplierServiceImpl.class
+spring\model\Supplier.class
+spring\config\HibernateConfig.class
+spring\service\Material_TypeServiceImpl.class
+spring\model\Material.class

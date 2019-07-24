@@ -1,44 +1,52 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page import="java.util.logging.Logger"%>
-<%
-	Logger logger = Logger.getLogger(this.getClass().getName());
-%>
-<c:url value="/showUser" var="urlShowUser" />
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import = "java.util.logging.Logger" %>
 <html>
-<head><title>Login</title></head>
-<body>
-    
-    <a href="${urlShowUser}"> <span class="fas fa-angle-double-left"> <u> List User </u> </span> </a>
-   <h1>Login</h1>
-     
-     <!-- /login?error=true -->
-     <c:if test="${param.error == 'true'}">
-         <div style="color:red;margin:10px 0px;">
-          
-                Login Failed!!!<br />
-                Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-                 
-         </div>
-    </c:if>
-       
-   <h3>Enter user name and password:</h3>  
-     
-    <%-- <form name='f' action="<c:url value='j_spring_security_login' />" method='POST'> --%>
-    <form name='f' action='${pageContext.request.contextPath}/login' method='POST'>
-      <table>
-         <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-         </tr>
-         <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-         </tr>
-         <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-         </tr>
-      </table>
-  </form>
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Login page</title>
+		<link href='<spring:url value="/resources/css/bootstrap.css"/>' rel="stylesheet" />
+		<link href='<spring:url value="/resources/css/app.css"/>' rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+	</head>
+
+	<body>
+		<div id="mainWrapper">
+			<div class="login-container">
+				<div class="login-card">
+					<div class="login-form">
+						<c:url var="loginUrl" value="/login" />
+						<form name="f" action="${pageContext.request.contextPath}/j_spring_security_check" method="POST" class="form-horizontal">
+							<c:if test="${param.error != null}">
+								<div class="alert alert-danger">
+									<p>Invalid username and password.</p>
+								</div>
+							</c:if>
+							<c:if test="${param.logout != null}">
+								<div class="alert alert-success">
+									<p>You have been logged out successfully.</p>
+								</div>
+							</c:if>
+							<div class="input-group input-sm">
+								<label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+								<input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+							</div>
+							<div class="input-group input-sm">
+								<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
+								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+							</div>					
+							<div class="form-actions">
+								<input type="submit"
+									class="btn btn-block btn-primary btn-default" value="Log in">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
 </html>

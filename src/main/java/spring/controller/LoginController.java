@@ -1,13 +1,22 @@
 package spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import spring.model.User;
-import spring.service.GenericService;
-
+@Controller
 public class LoginController {
-	@Autowired
-	public GenericService<User> userService;
-	
-	
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage(Model model) {
+		return "login";
+	}
+
+	@RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+	public String logoutSuccessfulPage(Model model) {
+		model.addAttribute("title", "Logout");
+		return "logoutSuccessfulPage";
+	}
+
 }

@@ -4,112 +4,26 @@
       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
 <tiles-definitions>
 
-	<!-- Configure for template layout -->
 	<definition name="mainLayout" template="/WEB-INF/Views/layout/main.jsp">
 		<put-attribute name="title" value="" /> 
 		<put-attribute name="header" value="/WEB-INF/Views/layout/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/Views/layout/footer.jsp" />
 	</definition>
-	
-	<definition name="login" extends="mainLayout">
-		<put-attribute name="title" value="login.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/login.jsp" />
-	</definition>
-	
-	<definition name="logout" extends="mainLayout">
-		<put-attribute name="title" value="logout.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/logout.jsp" />
-	</definition>
 
-	<!-- Configure for index in template layout -->
 	<definition name="index" extends="mainLayout">
-		<put-attribute name="title" value="home.title" /> 
+		<put-attribute name="title" value="Home Page" /> 
 		<put-attribute name="body" value="/WEB-INF/Views/index.jsp" />
 	</definition>
 	
-	<!-- Configure for user pages in template layout -->
 	<definition name="showUser" extends="mainLayout">
-		<put-attribute name="title" value="userPage.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/user/showUser.jsp" />
+		<put-attribute name="title" value="All User Page" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/showUser.jsp" />
 	</definition>
 	
 	<definition name="editUser" extends="mainLayout">
-		<put-attribute name="title" value="editUser.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/user/editUser.jsp" />
-	</definition> 
-	
-	<definition name="addUser" extends="mainLayout">
-		<put-attribute name="title" value="addUser.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/user/addUser.jsp" />
+		<put-attribute name="title" value="Edit User Page" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/editUser.jsp" />
 	</definition> 
 
-
-	<!-- Configure for merchandise pages in template layout -->
-	<definition name="showMerchandise" extends="mainLayout">
-		<put-attribute name="title" value="merchandisePage.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/mechandise/showMerchandise.jsp" />
-	</definition>
-	
-	<definition name="editMerchandise" extends="mainLayout">
-		<put-attribute name="title" value="editMerchandise.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/mechandise/editMerchandise.jsp" />
-	</definition> 
-	
-	<definition name="addMerchandise" extends="mainLayout">
-		<put-attribute name="title" value="addMerchandise.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/mechandise/addMerchandise.jsp" />
-	</definition>
-	
-	<!-- Configure for merchandise_type pages in template layout -->
-	<definition name="showMerchandise_type" extends="mainLayout">
-		<put-attribute name="title" value="merchandisePage.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/showMerchandise_type.jsp" />
-	</definition>
-	
-	<definition name="editMerchandise_type" extends="mainLayout">
-		<put-attribute name="title" value="editMerchandise.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/editMerchandise_type.jsp" />
-	</definition> 
-	
-	<definition name="addMerchandise_type" extends="mainLayout">
-		<put-attribute name="title" value="addMerchandise.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/addMerchandise_type.jsp" />
-	</definition>
-	
-	<!-- Configure for supplier pages in template layout -->
-	<definition name="showSupplier" extends="mainLayout">
-		<put-attribute name="title" value="supplierPage.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/supplier/showSupplier.jsp" />
-	</definition>
-	
-	<definition name="editSupplier" extends="mainLayout">
-		<put-attribute name="title" value="editSupplier.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/supplier/editSupplier.jsp" />
-	</definition> 
-	
-	<definition name="addSupplier" extends="mainLayout">
-		<put-attribute name="title" value="addSupplier.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/supplier/addSupplier.jsp" />
-	</definition>
-	
-	<definition name="detailSupplier" extends="mainLayout">
-		<put-attribute name="title" value="detailSupplier.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/supplier/detailSupplier.jsp" />
-	</definition>
-	
-	<definition name="addImport" extends="mainLayout">
-		<put-attribute name="title" value="addImport.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/import/addImport.jsp" />
-	</definition>
-	
-	<definition name="detailNote" extends="mainLayout">
-		<put-attribute name="title" value="detailNote.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/import/detailNote.jsp" />
-	</definition>
-	
-	<definition name="showAllImportNote" extends="mainLayout">
-		<put-attribute name="title" value="showImportNote.title" /> 
-		<put-attribute name="body" value="/WEB-INF/Views/import/showAllImportNote.jsp" />
-	</definition>
 </tiles-definitions>
