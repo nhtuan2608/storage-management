@@ -1,24 +1,17 @@
 package spring.controller;
 
 import java.security.Principal;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class indexController {
-//	@GetMapping("/")
-//	public String showHomePage() {
-//		return "index";
-//	}
-
 	@GetMapping("/")
 	public String welcomePage(Model model) {
 		model.addAttribute("title", "Welcome");
-		String encoded=new BCryptPasswordEncoder().encode("admin");
-		System.out.println(encoded);
+//		String encoded=new BCryptPasswordEncoder().encode("admin");
+//		System.out.println(encoded);
 //		model.addAttribute("message", "You are logged in as " + principal.getName());
 		return "index";
 	}
@@ -26,11 +19,6 @@ public class indexController {
 	@GetMapping(value = "/admin")
 	public String adminPage(Model model) {
 		return "admin";
-	}
-
-	@GetMapping(value = "/login")
-	public String loginPage(Model model) {
-		return "login";
 	}
 
 	@GetMapping(value = "/logoutSuccessful")

@@ -1,11 +1,18 @@
 package spring.controller;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +21,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import lombok.var;
 import spring.model.Import_Detail_Note;
 import spring.model.Import_Note;
 import spring.model.Merchandise;
@@ -34,6 +43,7 @@ public class ImportController {
 	private GenericService<Merchandise> merchandiseService;
 	
 	private Import_Note importNote = new Import_Note();
+	private String noteId;
 	
 	@GetMapping("/addImport")
 	public String importPage(Model model) {
@@ -53,7 +63,7 @@ public class ImportController {
 		System.out.println("Note: " + note);
 		System.out.println("Detail: " + detail);
 		List<Merchandise> listMerchandise = merchandiseService.findAll();
-//		System.out.println("role: " + user.getRole().getName());
+
 		System.out.println();
 		System.out.println();
 		System.out.println();
@@ -71,7 +81,10 @@ public class ImportController {
 		contructorNote(model);
 		contructorDetail(model);
 		importNote.setId(note.getId());
+		noteId = note.getId();
 		import_noteService.save(note);
+		model.addAttribute("note_date",import_noteService.findById(noteId).getCreatedAt());
+//		System.out.println(import_noteService.findById(noteId).getCreatedAt());
 		return "detailNote";
 	}
 	
@@ -179,4 +192,19 @@ public class ImportController {
 		import_detailService.delete(id);
 		return "";
 	}
+	
+	@GetMapping("/report")
+    public ModelAndView citiesReport(HttpServletRequest req, HttpServletResponse res) {
+		List<Import_Note> listNote = import_noteService.findAll();
+	    
+		String typeReport = req.getParameter("type");
+		
+		if(typeReport != null && typeReport.equals("xls")) {
+			return new ModelAndView(new ViewReport(),"noteList",listNote);
+		} else if(typeReport != null && typeReport.equals("pdf")) {
+			return new ModelAndView(new ViewPDF(),"noteList",listNote);
+		}
+		return new ModelAndView("showAllImportNote","listNote",getList());
+    }
+	
 }

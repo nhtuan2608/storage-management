@@ -73,12 +73,12 @@ public class UserApi {
 		
 
 		if (userService.isExist(user)) {
-			System.out.println("A User with name " + user.getUsername() + " already exist");
+//			System.out.println("A User with name " + user.getUsername() + " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 
 		userService.save(user);
-		System.out.println("Created User " + user.getUsername());
+//		System.out.println("Created User " + user.getUsername());
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/add/{id}").buildAndExpand(user.getId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -96,7 +96,7 @@ public class UserApi {
 			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 		}
 
-		currentUser.setUserName(user.getUsername());
+//		currentUser.setUserName(user.getUsername());
 		currentUser.setPassword(user.getPassword());
 
 		userService.update(currentUser);

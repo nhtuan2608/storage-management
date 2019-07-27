@@ -48,10 +48,10 @@
 							<label>Date:</label>
 						</div>
 						<div class="col-6">
-							<input type="number" name="phoneNumber"
-								placeholder="Phone number" style="font-size: 15px;width: 100%;"
-								id="phoneNumber" />
-							<label for="phoneNumber" class="error" style="font-size: 13px; color: red;"></label>
+							<input type="text" name="date"
+								style="font-size: 15px;width: 100%;"
+								id="date" />
+							<label for="date" class="error" style="font-size: 13px; color: red;"></label>
 						</div>
 					</div>
 				</div>	

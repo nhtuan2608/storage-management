@@ -13,7 +13,7 @@ import spring.model.Import_Detail_Note;
 import spring.model.Import_Note;
 import spring.model.Merchandise;
 import spring.model.Merchandise_Type;
-import spring.model.Role;
+//import spring.model.Role;
 import spring.model.Supplier;
 import spring.model.User;
 
@@ -34,7 +34,7 @@ public class HibernateConfig {
         factoryBean.setAnnotatedClasses(Merchandise_Type.class);
         factoryBean.setAnnotatedClasses(Supplier.class);
         factoryBean.setAnnotatedClasses(Address.class);
-        factoryBean.setAnnotatedClasses(Role.class);
+//        factoryBean.setAnnotatedClasses(Role.class);
         factoryBean.setAnnotatedClasses(Import_Detail_Note.class);
         factoryBean.setAnnotatedClasses(Import_Note.class);
         return factoryBean;

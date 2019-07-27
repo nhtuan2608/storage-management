@@ -3,6 +3,7 @@ package spring.repository;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -36,7 +37,7 @@ public class UserDAO implements GenericDAO<User> {
 		Session session = sessionFactory.getCurrentSession();
 		String msg = "Saved User: " + user;
 		logger.info(msg);
-		user.setEnabled(true);
+//		user.setEnabled(true);
 		session.saveOrUpdate(user);
 	}
 
@@ -108,7 +109,8 @@ public class UserDAO implements GenericDAO<User> {
 	@Override
 	public User findByName(String userName) {
 		Session session = sessionFactory.getCurrentSession();
-		User user = session.get(User.class, userName);
+		List<User> query = session.createQuery("FROM User WHERE userName=:userName",User.class).setParameter("userName", userName).list();
+		User user = query.get(0); 
 		return user;
 	}
 	

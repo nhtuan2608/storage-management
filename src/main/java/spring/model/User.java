@@ -39,12 +39,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @Transactional
-public class User implements UserDetails{
+public class User{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+//	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
 	
@@ -56,51 +56,48 @@ public class User implements UserDetails{
 	@NotNull(message = "Not null")
 	private String userName;
 	
-	private boolean enabled;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name ="role_id", nullable = true)
-	private Role role;
+//	private boolean enabled;
+//	
+//	@ManyToOne(optional = false)
+//	@JoinColumn(name ="role_id", nullable = true)
+	private String role;
 	
 	private int numberOfObject;
 
-//	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
-//	 private Set<Authorities> authorities = new HashSet<>();
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-    @Override
-    public String getUsername() {
-        return this.userName;
-    }
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-    
-    @Override
-    public boolean isEnabled() {
-        return this.enabled;
-    }
-    @Transient
-    private Collection<? extends GrantedAuthority> grantedAuthorities;
-    
-    @Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.grantedAuthorities;
-	}
-	
-	public void setAuthorities(List<GrantedAuthority> grantedList) {
-		this.grantedAuthorities = grantedList;
-	}
+//    @Override
+//    public String getPassword() {
+//        return this.password;
+//    }
+//    @Override
+//    public String getUsername() {
+//        return this.userName;
+//    }
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//    
+//    @Override
+//    public boolean isEnabled() {
+//        return this.enabled;
+//    }
+//    @Transient
+//    private Collection<? extends GrantedAuthority> grantedAuthorities;
+//    
+//    @Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		return this.grantedAuthorities;
+//	}
+//	
+//	public void setAuthorities(List<GrantedAuthority> grantedList) {
+//		this.grantedAuthorities = grantedList;
+//	}
 }

@@ -38,7 +38,7 @@ public class Import_NoteService implements GenericService<Import_Note>{
 
 	@Override
 	public Import_Note returnUserFindByName(String userName) {
-		return null;
+		return import_noteDAO.findByName(userName);
 	}
 
 	@Override

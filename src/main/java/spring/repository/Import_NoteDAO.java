@@ -67,7 +67,9 @@ public class Import_NoteDAO implements GenericDAO<Import_Note>{
 	}
 
 	@Override
-	public Import_Note findByName(String name) {
+	public Import_Note findByName(String id) {
+		Session session = sessionFactory.getCurrentSession();
+		System.out.println("get: "+ session.createQuery("SELECT from_unixtime(time, '%Y %D %M %h:%i:%s') FROM Import_Note WHERE id =:id").setParameter("id", id));	
 		return null;
 	}
 

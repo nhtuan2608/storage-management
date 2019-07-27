@@ -35,10 +35,6 @@
 							<spring:bind path="note">
 								<label>${note.id}</label>
 							</spring:bind>
-
-							<%-- <input id="id" name="id" style="font-size: 15px; width: 100%;"
-								type="text" value="${note.id}" readonly="true" />
-							<label for="id" style="font-size: 13px; color: red;"></label> --%>
 						</div>
 					</div>
 					<div class="row">
@@ -47,10 +43,6 @@
 						</div>
 						<div class="col-6">
 							<label>${note.user_id}</label>
-							<!-- <input id="name" type="text" name="name"
-								style="font-size: 15px;width: 100%;" autofocus="true"
-								placeholder="Supplier's name" />
-							<label for="name" class="error" style="font-size: 13px; color: red;"></label> -->
 						</div>
 					</div>
 					<div class="row">
@@ -58,11 +50,7 @@
 							<label>Date:</label>
 						</div>
 						<div class="col-6">
-							<label></label>
-							<!-- <input type="number" name="phoneNumber"
-								placeholder="Phone number" style="font-size: 15px;width: 100%;"
-								id="phoneNumber" />
-							<label for="phoneNumber" class="error" style="font-size: 13px; color: red;"></label> -->
+							<label>${note_date}</label>
 						</div>
 					</div>
 				</div>

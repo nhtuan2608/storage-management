@@ -3,6 +3,7 @@ package spring.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
@@ -66,15 +67,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
 		return new dropBoxValidator();
 	}
 	
-	@Bean
-	public WebContentInterceptor webContentInterceptor() {
-		WebContentInterceptor interceptor = new WebContentInterceptor();
-		interceptor.setRequireSession(true);
-		interceptor.setUseCacheControlNoStore(true);
-		return interceptor;
-	}
-	
-	@Bean
+   @Bean
    public InternalResourceViewResolver resolver() {
       InternalResourceViewResolver resolver = new InternalResourceViewResolver();
       resolver.setViewClass(JstlView.class);
@@ -99,6 +92,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
    
    @Override
    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	   
+	   registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/statics/", "D:/statics/")
+       	  .setCachePeriod(3600)
+	      .resourceChain(true).addResolver(new PathResourceResolver());
 	   registry
 	      .addResourceHandler("/js/**")
 	      .addResourceLocations("classpath:/statics/js/")
@@ -146,4 +143,15 @@ public class WebMVCConfig implements WebMvcConfigurer {
        builder.indentOutput(true);
        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
    } 
+   
+   /**
+	 * Optional. It's only required when handling '.' in @PathVariables which
+	 * otherwise ignore everything after last '.' in @PathVaidables argument. It's a
+	 * known bug in Spring [https://jira.spring.io/browse/SPR-6164], still present
+	 * in Spring 4.1.7. This is a workaround for this issue.
+	 */
+//	@Override
+//	public void configurePathMatch(PathMatchConfigurer matcher) {
+//		matcher.setUseRegisteredSuffixPatternMatch(true);
+//	}
 }
