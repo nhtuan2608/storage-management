@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="col-sm">
 					<div>
-						<h3>Supplier</h3>
+						<h3>User</h3>
 						<hr style="border: 1px solid red;">
 					</div>
 					<div class="row">
@@ -35,7 +35,7 @@
 							<label>Username:</label>
 						</div>
 						<div class="col-sm">
-							<input type="text" name="userName"  style="font-size: 15px; width: 100%;"value="${user.userName}" />
+							<input type="text" name="userName"  style="font-size: 15px; width: 100%;"value="${user.userName}" onclick="this.setSelectionRange(0, this.value.length)" />
 						</div>
 					</div>
 					<div class="row">
@@ -43,7 +43,7 @@
 							<label>Password:</label>
 						</div>
 						<div class="col-sm">
-							<input type="text" name="password"  style="font-size: 15px; width: 100%;" value="${user.password}" />
+							<input type="password" name="password"  style="font-size: 15px; width: 100%;" value="${user.password}" onclick="this.setSelectionRange(0, this.value.length)"/>
 						</div>
 
 					</div>
@@ -52,7 +52,12 @@
 							<label>Role: </label>
 						</div>
 						<div class="col-sm">
-							<input type="text" name="role" style="font-size: 15px; width: 100%;" value="${user.role}" />
+							<%-- <input type="text" name="role" style="font-size: 15px; width: 100%;" value="${user.role}" /> --%>
+							<form:select id="dropBox" path="user.role.name" name="name">
+										<%-- <form:option id="optionNone" value="${user.role}"/> --%>
+										<form:options items="${roleList}"  />
+								 </form:select>
+								<label id="errorDropBox" style="font-size: 13px; color: red;"></label>
 						</div>
 					</div>
 					<div class="row">

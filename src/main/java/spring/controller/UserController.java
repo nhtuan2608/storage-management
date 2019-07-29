@@ -1,9 +1,11 @@
 package spring.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javassist.expr.NewArray;
+import spring.model.Role;
 //import spring.model.Role;
 import spring.model.User;
 import spring.service.GenericService;
@@ -23,8 +27,8 @@ public class UserController {
 	@Autowired
 	private GenericService<User> userService;
 
-//	@Autowired
-//	private GenericService<Role> roleService;
+	@Autowired
+	private GenericService<Role> roleService;
 
 	@GetMapping("/addUser")
 	public String newUser(Model model) {
@@ -41,6 +45,19 @@ public class UserController {
 	@RequestMapping("/editUser/{id}")
 	public String editUser(@PathVariable String id, Model model) {
 		User user = userService.findById(id);
+		List<Role> roles = roleService.findAll();
+		List<String> listRole = contructorListRoles(roles);
+		List<String> sortedList = new ArrayList<String>();
+		Iterator<String> iterator = listRole.iterator();
+		while (iterator.hasNext()) {
+		    String role = iterator.next();
+		    if (role.equals(user.getRole().getName())) {
+		    	sortedList.add(role);
+		        iterator.remove();
+		        sortedList.addAll(listRole);
+		    }
+		}
+		model.addAttribute("roleList", sortedList);
 		model.addAttribute("user", user);
 		return "editUser";
 	}
@@ -59,6 +76,9 @@ public class UserController {
 			System.out.println("Error saving: " + result.getAllErrors());
 			return "addUser";
 		}
+		String encoded=new BCryptPasswordEncoder().encode(user.getPassword());
+		System.out.println(encoded);
+		user.setPassword(encoded);
 //		if(userService.findByName(user.getUsername()))
 //		{
 //			System.out.println("User " + user.getUsername() + " exists.");
@@ -68,7 +88,7 @@ public class UserController {
 //			return "addUser";
 //		}
 		System.out.println();
-//		user.setRole(roleService.returnUserFindByName(user.getRole().getName()));
+		user.setRole(roleService.returnUserFindByName(user.getRole().getName()));
 		System.out.println("save User: " + user);
 //		System.out.println("to the save service");
 		userService.save(user);
@@ -83,10 +103,15 @@ public class UserController {
 
 	public List<User> getList() {
 		List<User> listUsers = userService.findAll();
+		String pwd;
 		int length = listUsers.size();
 		int count = 1;
 		for (User obj : listUsers) {
 			if (count <= length) {
+				pwd = obj.getPassword();
+				pwd = pwd.substring(0, 25);
+				pwd = pwd.replace("$", "#");
+				obj.setPassword(pwd);
 				obj.setNumberOfObject(count);
 				count++;
 			}
@@ -106,23 +131,13 @@ public class UserController {
 
 	public Model contructorModel(Model model) {
 		List<User> listUsers = userService.findAll();
-//		List<Role> roles = roleService.findAll();
-//		LinkedHashMap<Integer, String> listRoles = new LinkedHashMap<Integer, String>();
-//		for(Role role: roles) {
-//			listRoles.put(Integer.valueOf(role.getId()), role.getName());
-//		}
-//		System.out.println(listRoles);
-		List<String> roleNames = new ArrayList<>();
-//		for(Role role: roles) {
-//			roleNames.add(role.getName());
-//		}
+		List<Role> roles = roleService.findAll();
+		List<String> roleNames = contructorListRoles(roles);
 		int length = listUsers.size();
 		int id;
 		if (length == 0 || listUsers == null) {
 			id = 1;
 			User user = new User();
-//			Role role = new Role(1, "user");
-//			user.setRole(role);
 			user.setId("UID" + id);
 			model.addAttribute("user", user);
 			model.addAttribute("roles", roleNames);
@@ -136,5 +151,13 @@ public class UserController {
 			System.out.println(model);
 		}
 		return model;
+	}
+	
+	public List<String> contructorListRoles(List<Role> roles){
+		List<String> roleNames = new ArrayList<>();
+		for(Role role: roles) {
+			roleNames.add(role.getName());
+		}
+		return roleNames;
 	}
 }

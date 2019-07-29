@@ -58,9 +58,9 @@ public class User{
 	
 //	private boolean enabled;
 //	
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name ="role_id", nullable = true)
-	private String role;
+	@ManyToOne(optional = false)
+	@JoinColumn(name ="role_id", nullable = true)
+	private Role role;
 	
 	private int numberOfObject;
 

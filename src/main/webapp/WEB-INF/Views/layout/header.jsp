@@ -19,7 +19,12 @@
 		href=""> <!-- <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div> --> <!-- <img src="img/logo.jpg" height="60px">  -->
+        <sec:authorize access="hasRole('ADMIN')">
 		<div class="sidebar-brand-text mx-3">Administrator</div>
+		</sec:authorize>
+		<sec:authorize access="hasRole('USER')">
+		<div class="sidebar-brand-text mx-3">User</div>
+		</sec:authorize>
 	</a>
 
 	<!-- Divider -->
@@ -88,15 +93,7 @@
 			aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Login Screens:</h6>
-				<a class="collapse-item" href="${urlAddImport}">Import</a> <a
-					class="collapse-item" href="login.html">Login</a> <a
-					class="collapse-item" href="register.html">Register</a> <a
-					class="collapse-item" href="forgot-password.html">Forgot
-					Password</a>
-				<div class="collapse-divider"></div>
-				<h6 class="collapse-header">Other Pages:</h6>
-				<a class="collapse-item" href="404.html">404 Page</a> <a
-					class="collapse-item" href="blank.html">Blank Page</a>
+				<a class="collapse-item" href="${urlAddImport}">Import</a>
 			</div>
 		</div></li>
 

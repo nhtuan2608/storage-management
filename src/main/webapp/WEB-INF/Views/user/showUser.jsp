@@ -71,9 +71,9 @@
 								<tr style="border: 1px black solid">
 									<td class="td_id">${user.numberOfObject}</td>
 									<td class="td_Id">${user.id}</td>
-									<td>${user.username}</td>
+									<td>${user.userName}</td>
 									<td>${user.password}</td>
-									<td>${user.role}</td>
+									<td>${user.role.name}</td>
 									<%-- <td class="actionCol"><a href="${urlView}/${user.id}"><img
 											src="${path}/img/icon/Search.png" height="20" width="20" />View</a></td> --%>
 									<td class="actionCol"><a href="${urlUpdate}/${user.id}"><span class="fas fa-pencil-alt"></span></a></td>

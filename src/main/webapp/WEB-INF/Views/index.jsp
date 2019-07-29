@@ -4,9 +4,7 @@
 
 <%@page session="false"%>
 
-<h1>Welcome Page</h1>
-<a href="new">Create new User</a>
-<div align="center">
-        <h1>Spring Security Basic Demo (Java Config)</h1>
-        <a href="/admin">Go to Administrator Page</a>
+<div align="center" style="padding-top: 50px;" >
+        <h1>Welcome Page</h1>
+        <!-- <a href="/admin">Go to Administrator Page</a> -->
 </div>

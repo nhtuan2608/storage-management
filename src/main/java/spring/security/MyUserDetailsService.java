@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import spring.model.Role;
 import spring.model.User;
 import spring.service.GenericService;
 
@@ -29,10 +30,10 @@ public class MyUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("user: was not found in the database");
 		}
 		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-		String role = user.getRole();
+		Role role = user.getRole();
 		if (role != null) {
 			// ROLE_USER, ROLE_ADMIN
-			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.getName());
 			grantList.add(authority);
 		}
 		System.out.println("size grantList = " + grantList.size());
