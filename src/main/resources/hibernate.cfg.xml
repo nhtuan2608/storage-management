@@ -26,5 +26,7 @@
         <mapping class="spring.model.Address" />
         <mapping class="spring.model.Import_Detail_Note" />
         <mapping class="spring.model.Import_Note" />
+		<mapping class="spring.model.Export_Detail_Note" />
+        <mapping class="spring.model.Export_Note" />
     </session-factory>
 </hibernate-configuration>

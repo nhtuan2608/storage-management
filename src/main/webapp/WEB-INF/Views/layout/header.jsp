@@ -9,6 +9,7 @@
 <c:url value="/showSupplier" var="urlShowSupplier" />
 <c:url value="/addImport" var="urlAddImport" />
 <c:url value="/logout" var="urlLogOut" />
+<c:url value="/profileUser" var="urlProfile" />
 <ul
 	class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 	id="accordionSidebar">
@@ -299,7 +300,7 @@
 					<div
 						class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 						aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="#"> <i
+						<a class="dropdown-item" href="${urlProfile}"> <i
 							class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
 						</a> <a class="dropdown-item" href="#"> <i
 							class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings

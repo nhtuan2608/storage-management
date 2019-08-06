@@ -16,7 +16,6 @@
 <spring:url value="/report/?type=xls" var="xlsURL" />
 <spring:url value="/report/?type=pdf" var="pdfURL" />
 
-<a href="${xlsURL }">Download Excel</a>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 

@@ -37,6 +37,8 @@ public class HibernateConfig {
 //        factoryBean.setAnnotatedClasses(Role.class);
         factoryBean.setAnnotatedClasses(Import_Detail_Note.class);
         factoryBean.setAnnotatedClasses(Import_Note.class);
+	factoryBean.setAnnotatedClasses(Export_Note.class);
+	factoryBean.setAnnotatedClasses(Export_Detail_Note.class);
         return factoryBean;
     }
  

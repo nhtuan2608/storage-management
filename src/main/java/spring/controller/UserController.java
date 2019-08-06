@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +41,14 @@ public class UserController {
 	public String showUser(Model model) {
 		model.addAttribute("listUsers", getList());
 		return "showUser";
+	}
+	
+	@GetMapping("/profileUser")
+	public String profileUser(Model model, Authentication authentication) {
+		String userName = authentication.getName();
+		User user = userService.returnUserFindByName(userName);
+		model.addAttribute("profileUser", user);
+		return "profileUser";
 	}
 
 	@RequestMapping("/editUser/{id}")

@@ -44,6 +44,10 @@
 		<put-attribute name="body" value="/WEB-INF/Views/user/addUser.jsp" />
 	</definition> 
 
+	<definition name="profileUser" extends="mainLayout">
+		<put-attribute name="title" value="profileUser.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/user/profileUser.jsp" />
+	</definition> 
 
 	<!-- Configure for merchandise pages in template layout -->
 	<definition name="showMerchandise" extends="mainLayout">

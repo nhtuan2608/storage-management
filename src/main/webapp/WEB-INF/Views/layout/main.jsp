@@ -429,7 +429,26 @@ input:checked+.slider:before {
 				},
 				messages : {}
 			});
+			
+			$("#formProfile").validate({
+				rules : {
+					password : {
+						required : true,
+					},
+					newPwd : "required",
+					confirmPwd : "required",
+				},
+				messages : {}
+			});
+		    $('#confirmPwd').focusout(function(){
+		        var pass = $('#confirmPwd').val();
+		        var pass2 = $('#newPwd').val();
+		        if(pass != pass2){
+		            alert('the passwords didn\'t match!');
+		        }
 
+		    });
+			
 			$("#formAddMerchandise").validate({
 				rules : {
 					name : {
