@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import spring.model.Merchandise;
 import spring.model.Merchandise_Type;
 import spring.service.GenericService;
 
@@ -20,11 +21,13 @@ public class Merchandise_TypeController {
 		
 	@Autowired
 	private GenericService<Merchandise_Type> merchandise_typeService;
+	@Autowired
+	private GenericService<Merchandise> merchandiseService;
 	
 	@GetMapping("/addMerchandise_type")
 	public String newMerchandise_Type(Model model) {
-		model.addAttribute("merchandise_type", new Merchandise_Type());
-		return "addMerchandise";
+		contructorModel(model);
+		return "addMerchandise_type";
 	}
 
 	@GetMapping("/showMerchandise_type")
@@ -41,13 +44,21 @@ public class Merchandise_TypeController {
 	}
 
 	@PostMapping("/saveMerchandise_type")
-	public String saveMerchandise_Type(@ModelAttribute("merchandise") @Valid Merchandise_Type entity, BindingResult result) {
+	public String saveMerchandise_Type(@ModelAttribute("merchandise_type") @Valid Merchandise_Type entity, BindingResult result, Model model) {
 		if (result.hasErrors()) {
+			contructorModel(model);
+			System.out.println("Model: " + model);
 			System.out.println("Error saving: " + result.getAllErrors());
-			return "editMerchandise_type";
+			return "addMerchandise_type";
 		}
-		System.out.println("save Merchandise: " + entity);
-		System.out.println("to the save service");
+		if(merchandise_typeService.findByName(entity.getName()))
+		{
+			System.out.println("Type " + entity.getName() + " exists.");
+			model.addAttribute("typeExisted", entity);
+			contructorModel(model);
+			System.out.println("Model: " + model);
+			return "addMerchandise_type";
+		}
 		merchandise_typeService.save(entity);
 		return "redirect:/showMerchandise_type";
 
@@ -55,6 +66,11 @@ public class Merchandise_TypeController {
 
 	@RequestMapping("/deleteMerchandise_type/{id}")
 	public String deleteMerchandise_Type(@PathVariable String id, Model model) {
+		List<Merchandise> list = merchandiseService.getListByAttribute(id);
+		for(Merchandise obj: list)
+		{
+			merchandiseService.delete(obj.getId());
+		}
 		merchandise_typeService.delete(id);
 		return "redirect:/showMerchandise_type";
 	}
@@ -71,7 +87,27 @@ public class Merchandise_TypeController {
 		}
 		return listMerchandise_types;
 	}
-		
+	
+	public Model contructorModel(Model model) {
+		List<Merchandise_Type> listTypes = merchandise_typeService.findAll();
+		int length = listTypes.size();
+		int id;
+		if(length == 0 || listTypes == null)
+		{
+			id = 1;
+			Merchandise_Type type = new Merchandise_Type();
+			type.setId("MTID"+id);
+			model.addAttribute("merchandise_type", type);
+		}
+		else
+		{
+			id = (length + 1);
+			Merchandise_Type type = new Merchandise_Type();
+			type.setId("MTID"+id);
+			model.addAttribute("merchandise_type", type);
+		}
+		return model;
+	}
 //		@RequestMapping(value="/saveUser", method=RequestMethod.POST)
 //		public String saveUser(Model model,HttpServletRequest rq, 
 //				@RequestParam("userNo") String usrNo, 

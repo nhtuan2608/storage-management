@@ -1,9 +1,16 @@
 package spring.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Proxy;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,15 +35,14 @@ public class Merchandise {
 	private String id;
 	
 	@NotNull(message = "Not null")
-	@Size(min = 3, max = 20, message = "Please  enter name is between 3 and 20 characters")
+	@Size(min = 3, max = 20, message =  "Please  enter name is between 3 and 20 characters")
 	private String name;
 	
 	@NotNull(message = "Not null")
 	private String merchandise_type_id;
 	
-	@NotNull(message = "Not null")
+//	@NotNull(message = "Not null")
 	private String supplier_id;
-	
 	
 	private int amount;
 	private String unit;

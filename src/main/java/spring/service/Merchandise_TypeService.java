@@ -2,9 +2,9 @@ package spring.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import spring.model.Merchandise_Type;
@@ -45,6 +45,29 @@ public class Merchandise_TypeService implements GenericService<Merchandise_Type>
 	@Override
 	public boolean isExist(Merchandise_Type entity) {
 		return merchandise_TypeDAO.isExist(entity);
+	}
+
+	@Override
+	public boolean findByName(String name) {
+		return merchandise_TypeDAO.isExist(name);
+	}
+
+	@Override
+	public Merchandise_Type findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Merchandise_Type returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Merchandise_Type> getListByAttribute(String t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

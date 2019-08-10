@@ -47,4 +47,27 @@ public class SupplierService implements GenericService<Supplier>{
 		return supplierDAO.isExist(entity);
 	}
 
+	@Override
+	public boolean findByName(String name) {
+		return supplierDAO.isExist(name);
+	}
+
+	@Override
+	public Supplier findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Supplier returnUserFindByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Supplier> getListByAttribute(String t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

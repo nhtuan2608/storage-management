@@ -21,14 +21,14 @@ public class SupplierDAO implements GenericDAO<Supplier>{
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(entity);
 		Logger logger = Logger.getLogger(this.getClass().getName());
-		String msg = "Update User: " + entity;
+		String msg = "Update Supplier: " + entity;
 		logger.info(msg);
 	}
 
 	@Override
 	public List<Supplier> findAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM SUPPLIER",Supplier.class).getResultList();
+		return session.createQuery("FROM Supplier",Supplier.class).getResultList();
 	}
 
 	@Override
@@ -54,5 +54,34 @@ public class SupplierDAO implements GenericDAO<Supplier>{
 	public boolean isExist(Supplier entity) {
 		return findById(entity.getId()) != null;
 	}
+
+	@Override
+	public boolean isExist(String userName) {
+		Session session = sessionFactory.getCurrentSession();
+		Supplier supplier = session.get(Supplier.class, userName);
+		if(supplier != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Supplier findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Supplier findByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Supplier> getListById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

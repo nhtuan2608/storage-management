@@ -2,6 +2,9 @@ package spring.repository;
 
 import java.util.List;
 import java.util.logging.Logger;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import spring.model.Merchandise_Type;
 
 @Repository
+@Transactional
 public class Merchandise_TypeDAO implements  GenericDAO<Merchandise_Type>{
 
 	@Autowired
@@ -51,6 +55,34 @@ public class Merchandise_TypeDAO implements  GenericDAO<Merchandise_Type>{
 	@Override
 	public boolean isExist(Merchandise_Type entity) {
 		return findById(entity.getId()) != null;
+	}
+
+	@Override
+	public boolean isExist(String userName) {
+		Session session = sessionFactory.getCurrentSession();
+		Merchandise_Type type = session.get(Merchandise_Type.class, userName);
+		if(type != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Merchandise_Type findByIntegerId(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Merchandise_Type findByName(String userName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Merchandise_Type> getListById(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

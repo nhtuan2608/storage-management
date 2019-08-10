@@ -1,35 +1,41 @@
 package spring.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.CacheControl;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
+import spring.validator.dropBoxValidator;
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "spring")
+@EnableTransactionManagement
+@ComponentScan(basePackages = "spring.*")
 public class WebMVCConfig implements WebMvcConfigurer {
 	
 	@Bean(name = "viewResolver")
@@ -45,6 +51,20 @@ public class WebMVCConfig implements WebMvcConfigurer {
 		tiles.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
 		return tiles;
 
+	}
+	
+	@Bean
+	public CharacterEncodingFilter filter() {
+		CharacterEncodingFilter cef = new CharacterEncodingFilter();
+		cef.setBeanName("encoding");
+		cef.setEncoding("UTF-8");
+		cef.setForceEncoding(true);
+		return cef;
+	}
+	
+	@Bean
+	public dropBoxValidator dropBoxValidator() {
+		return new dropBoxValidator();
 	}
 	
    @Bean
@@ -72,6 +92,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
    
    @Override
    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	   
+	   registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/statics/", "D:/statics/")
+       	  .setCachePeriod(3600)
+	      .resourceChain(true).addResolver(new PathResourceResolver());
 	   registry
 	      .addResourceHandler("/js/**")
 	      .addResourceLocations("classpath:/statics/js/")
@@ -82,9 +106,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
 	   registry
 	   	.addResourceHandler("/css/**")
 	   	.addResourceLocations("classpath:/statics/css/")
-	      .setCachePeriod(3600)
-	      .resourceChain(true)
-	      .addResolver(new PathResourceResolver());
+	    .setCachePeriod(3600)
+	    .resourceChain(true)
+	    .addResolver(new PathResourceResolver());
 	   registry
 	   	.addResourceHandler("/fonts/**")
 	   	.addResourceLocations("classpath:/statics/fonts/")
@@ -99,7 +123,9 @@ public class WebMVCConfig implements WebMvcConfigurer {
 	      .addResolver(new PathResourceResolver());
 
 	   registry.addResourceHandler("/img/**").addResourceLocations("classpath:/statics/img/")
-       .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
+       .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic()).setCachePeriod(3600)
+	      .resourceChain(true)
+	      .addResolver(new PathResourceResolver());
    }
    
    @Bean
@@ -117,4 +143,15 @@ public class WebMVCConfig implements WebMvcConfigurer {
        builder.indentOutput(true);
        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
    } 
+   
+   /**
+	 * Optional. It's only required when handling '.' in @PathVariables which
+	 * otherwise ignore everything after last '.' in @PathVaidables argument. It's a
+	 * known bug in Spring [https://jira.spring.io/browse/SPR-6164], still present
+	 * in Spring 4.1.7. This is a workaround for this issue.
+	 */
+//	@Override
+//	public void configurePathMatch(PathMatchConfigurer matcher) {
+//		matcher.setUseRegisteredSuffixPatternMatch(true);
+//	}
 }

@@ -11,6 +11,16 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/Views/layout/footer.jsp" />
 	</definition>
+	
+<!-- 	<definition name="login" extends="mainLayout">
+		<put-attribute name="title" value="login.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/login.jsp" />
+	</definition> -->
+	
+	<definition name="logout" extends="mainLayout">
+		<put-attribute name="title" value="logout.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/logout.jsp" />
+	</definition>
 
 	<!-- Configure for index in template layout -->
 	<definition name="index" extends="mainLayout">
@@ -34,6 +44,10 @@
 		<put-attribute name="body" value="/WEB-INF/Views/user/addUser.jsp" />
 	</definition> 
 
+	<definition name="profileUser" extends="mainLayout">
+		<put-attribute name="title" value="profileUser.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/user/profileUser.jsp" />
+	</definition> 
 
 	<!-- Configure for merchandise pages in template layout -->
 	<definition name="showMerchandise" extends="mainLayout">
@@ -65,5 +79,66 @@
 	<definition name="addMerchandise_type" extends="mainLayout">
 		<put-attribute name="title" value="addMerchandise.title" /> 
 		<put-attribute name="body" value="/WEB-INF/Views/mechandise_type/addMerchandise_type.jsp" />
+	</definition>
+	
+	<!-- Configure for supplier pages in template layout -->
+	<definition name="showSupplier" extends="mainLayout">
+		<put-attribute name="title" value="supplierPage.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/showSupplier.jsp" />
+	</definition>
+	
+	<definition name="editSupplier" extends="mainLayout">
+		<put-attribute name="title" value="editSupplier.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/editSupplier.jsp" />
+	</definition> 
+	
+	<definition name="addSupplier" extends="mainLayout">
+		<put-attribute name="title" value="addSupplier.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/addSupplier.jsp" />
+	</definition>
+	
+	<definition name="detailSupplier" extends="mainLayout">
+		<put-attribute name="title" value="detailSupplier.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/supplier/detailSupplier.jsp" />
+	</definition>
+	
+	<definition name="addImport" extends="mainLayout">
+		<put-attribute name="title" value="addImport.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/import/addImport.jsp" />
+	</definition>
+	
+	<definition name="detailNote" extends="mainLayout">
+		<put-attribute name="title" value="detailNote.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/import/detailNote.jsp" />
+	</definition>
+	
+	<definition name="showAllImportNote" extends="mainLayout">
+		<put-attribute name="title" value="showImportNote.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/import/showAllImportNote.jsp" />
+	</definition>
+	
+	<definition name="addExport" extends="mainLayout">
+		<put-attribute name="title" value="addExport.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/export/addExport.jsp" />
+	</definition>
+	
+	<definition name="showAllExportNote" extends="mainLayout">
+		<put-attribute name="title" value="showAllExportNote.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/export/showAllExportNote.jsp" />
+	</definition>
+	
+	<definition name="exportDetailNote" extends="mainLayout">
+		<put-attribute name="title" value="exportDetailNote.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/export/exportDetailNote.jsp" />
+	</definition>
+	
+	<definition name="exportDetail" extends="mainLayout">
+		<put-attribute name="title" value="exportDetail.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/export/viewDetail.jsp" />
+	</definition>
+	
+	<definition name="editImport" extends="mainLayout">
+		<put-attribute name="title" value="editImport.title" /> 
+		<put-attribute name="body" value="/WEB-INF/Views/import/editImport.jsp" />
 	</definition>
 </tiles-definitions>
